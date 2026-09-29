@@ -36,7 +36,7 @@ Pencatat Keuangan/
 
 Proyek ini adalah **single-file application** — semua kode HTML, CSS, dan JavaScript tergabung dalam satu file tanpa dependensi eksternal.
 
-## 🚀 Cara Pakai
+## 🚀 How to use
 
 1. **Buka langsung di browser**
    ```
@@ -47,7 +47,7 @@ Proyek ini adalah **single-file application** — semua kode HTML, CSS, dan Java
 2. **Atau deploy ke hosting statis**
    Upload file HTML ke GitHub Pages, Netlify, Vercel, atau hosting lainnya.
 
-## 📖 Panduan Penggunaan
+## 📖 how to use 
 
 ### Menambah Transaksi
 1. Tekan tombol **+** (FAB) di pojok kanan bawah
