@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FBF4E4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B0A1F" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Keuangan">
+<title>Catatan Keuangan</title>
+<style>
+/* Vanilla (terang) dan Cosmic (gelap) */
+:root {
+  --bg: #FBF4E4;
+  --surface: rgba(91, 63, 209, 0.07);
+  --card: rgba(255, 255, 255, 0.62);
+  --field: rgba(255, 255, 255, 0.72);
+  --edge: rgba(255, 255, 255, 0.85);
+  --hi: rgba(255, 255, 255, 0.95);
+  --line: rgba(60, 40, 120, 0.12);
+  --text: #1E1638;
+  --muted: #655C82;
+  --accent: #5B3FD1;
+  --accent-ink: #FFFFFF;
+  --accent-glow: rgba(91, 63, 209, 0.42);
+  --income: #15773A;
+  --expense: #B4232C;
+  --glass: rgba(255, 250, 236, 0.58);
+  --glass-strong: rgba(252, 246, 230, 0.86);
+  --glass-shadow: 0 14px 34px rgba(50, 35, 120, 0.16), 0 2px 8px rgba(50, 35, 120, 0.08);
+  --lens: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.4) 55%, rgba(91, 63, 209, 0.12));
+  --lens-shadow: 0 5px 16px rgba(91, 63, 209, 0.22);
+  --sheen: rgba(255, 255, 255, 0.4);
+  --glow-1: rgba(167, 139, 250, 0.32);
+  --glow-2: rgba(255, 205, 140, 0.5);
+  --glow-3: rgba(120, 140, 255, 0.2);
+  --scrim: rgba(30, 22, 56, 0.4);
+  --stars: 0;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0B0A1F;
+    --surface: rgba(255, 255, 255, 0.07);
+    --card: rgba(255, 255, 255, 0.07);
+    --field: rgba(255, 255, 255, 0.08);
+    --edge: rgba(255, 255, 255, 0.14);
+    --hi: rgba(255, 255, 255, 0.22);
+    --line: rgba(255, 255, 255, 0.1);
+    --text: #F7EFD9;
+    --muted: #A9A2CB;
+    --accent: #A78BFA;
+    --accent-ink: #140F33;
+    --accent-glow: rgba(167, 139, 250, 0.45);
+    --income: #6EE7A8;
+    --expense: #FF8FA3;
+    --glass: rgba(28, 24, 70, 0.5);
+    --glass-strong: rgba(20, 16, 56, 0.84);
+    --glass-shadow: 0 16px 38px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.4);
+    --lens: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.08) 55%, rgba(167, 139, 250, 0.2));
+    --lens-shadow: 0 5px 18px rgba(167, 139, 250, 0.3);
+    --sheen: rgba(196, 176, 255, 0.24);
+    --glow-1: rgba(124, 92, 255, 0.4);
+    --glow-2: rgba(56, 84, 210, 0.3);
+    --glow-3: rgba(190, 84, 210, 0.24);
+    --scrim: rgba(0, 0, 0, 0.6);
+    --stars: 1;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; }
+html { background: var(--bg); -webkit-text-size-adjust: 100%; }
+body {
+  height: 100%; overflow: hidden; overscroll-behavior: none;
+  color: var(--text);
+  font: 16px/1.45 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-variant-numeric: tabular-nums;
+  -webkit-tap-highlight-color: transparent;
+}
+/* Latar kosmik: cahaya lembut di belakang semua halaman */
+body::before {
+  content: ""; position: fixed; inset: -10%; z-index: -2; pointer-events: none;
+  background:
+    radial-gradient(60% 45% at 12% 6%, var(--glow-1), transparent 70%),
+    radial-gradient(55% 40% at 96% 32%, var(--glow-2), transparent 70%),
+    radial-gradient(70% 50% at 30% 102%, var(--glow-3), transparent 70%);
+}
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: var(--stars);
+  background-image:
+    radial-gradient(1.2px 1.2px at 8% 12%, rgba(255, 244, 214, 0.8), transparent),
+    radial-gradient(1px 1px at 22% 34%, rgba(255, 244, 214, 0.5), transparent),
+    radial-gradient(1.4px 1.4px at 37% 8%, rgba(255, 244, 214, 0.7), transparent),
+    radial-gradient(1px 1px at 51% 27%, rgba(255, 244, 214, 0.45), transparent),
+    radial-gradient(1.2px 1.2px at 66% 15%, rgba(255, 244, 214, 0.75), transparent),
+    radial-gradient(1px 1px at 78% 41%, rgba(255, 244, 214, 0.5), transparent),
+    radial-gradient(1.4px 1.4px at 91% 9%, rgba(255, 244, 214, 0.7), transparent),
+    radial-gradient(1px 1px at 14% 58%, rgba(255, 244, 214, 0.4), transparent),
+    radial-gradient(1.2px 1.2px at 88% 66%, rgba(255, 244, 214, 0.55), transparent),
+    radial-gradient(1px 1px at 44% 74%, rgba(255, 244, 214, 0.4), transparent),
+    radial-gradient(1.2px 1.2px at 70% 88%, rgba(255, 244, 214, 0.5), transparent),
+    radial-gradient(1px 1px at 27% 93%, rgba(255, 244, 214, 0.45), transparent);
+}
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.muted { color: var(--muted); }
+svg.ic { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Rangka aplikasi */
+#shell { position: fixed; inset: 0; max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; }
+.top {
+  flex: none; display: flex; align-items: center; justify-content: space-between;
+  padding: calc(env(safe-area-inset-top, 0px) + 10px) 14px 6px;
+}
+.icon-btn {
+  width: 44px; height: 44px; border: 0; background: transparent;
+  display: grid; place-items: center; border-radius: 50%; color: var(--text);
+  transition: background 0.2s, transform 0.2s;
+}
+.icon-btn:active { background: var(--surface); transform: scale(0.92); }
+.month { border: 0; background: transparent; font-size: 17px; font-weight: 650; padding: 10px 14px; border-radius: 14px; transition: background 0.2s; }
+.month:active { background: var(--surface); }
+
+#viewport { position: relative; flex: 1; min-height: 0; overflow: hidden; touch-action: pan-y; }
+#track { display: flex; width: 300%; height: 100%; will-change: transform; }
+.pane {
+  flex: 0 0 33.3333333%; min-width: 0; height: 100%;
+  overflow-x: hidden; overflow-y: auto; overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  -webkit-user-select: none; user-select: none;
+  will-change: opacity;
+}
+.pane::-webkit-scrollbar { display: none; }
+.pane input { -webkit-user-select: text; user-select: text; }
+.inner { padding: 0 20px calc(150px + env(safe-area-inset-bottom, 0px)); will-change: transform; }
+
+/* Jejak kaca cair saat menggeser */
+#ripple {
+  position: absolute; top: 0; bottom: 0; left: 0; width: 140px; pointer-events: none; opacity: 0;
+  background: linear-gradient(90deg, transparent, var(--sheen) 50%, transparent);
+  -webkit-backdrop-filter: blur(5px) saturate(170%); backdrop-filter: blur(5px) saturate(170%);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 35%, #000 65%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 35%, #000 65%, transparent);
+  transition: opacity 0.4s ease-out;
+}
+
+/* Saldo */
+.hero { padding: 14px 0 4px; }
+.hero .label { color: var(--muted); font-size: 14px; }
+.hero .balance { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-top: 4px; }
+.flow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+.flow > div {
+  background: var(--card); border: 1px solid var(--edge); border-radius: 20px; padding: 13px 15px; min-width: 0;
+  box-shadow: inset 0 1px 0 var(--hi), 0 4px 14px rgba(50, 35, 120, 0.06);
+}
+.flow .k { font-size: 13px; color: var(--muted); }
+.flow .v { font-size: 17px; font-weight: 650; margin-top: 2px; overflow-wrap: anywhere; }
+.pos { color: var(--income); }
+.neg { color: var(--expense); }
+
+/* Kontrol segmen */
+.seg { display: flex; gap: 2px; background: var(--surface); border-radius: 14px; padding: 3px; }
+.seg button {
+  flex: 1; border: 1px solid transparent; background: transparent; border-radius: 11px;
+  padding: 8px 10px; font-size: 15px; color: var(--muted); min-height: 38px;
+  transition: background 0.25s, color 0.25s, box-shadow 0.25s;
+}
+.seg button[aria-pressed="true"] {
+  background: var(--card); border-color: var(--edge); color: var(--text); font-weight: 600;
+  box-shadow: inset 0 1px 0 var(--hi), 0 2px 8px rgba(50, 35, 120, 0.12);
+}
+.filters { margin-top: 22px; }
+
+/* Daftar */
+.day { display: flex; justify-content: space-between; align-items: baseline; margin-top: 22px; padding-bottom: 6px; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+.row {
+  width: 100%; border: 0; background: transparent; text-align: left;
+  display: grid; grid-template-columns: 10px 1fr auto; gap: 12px; align-items: center;
+  padding: 12px 0; min-height: 56px; border-bottom: 1px solid var(--line); transition: background 0.2s;
+}
+.row:active { background: var(--surface); }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.row .name { font-weight: 550; }
+.row .note { font-size: 14px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.row .mid { min-width: 0; }
+.row .amt { font-weight: 600; }
+.empty { text-align: center; padding: 56px 12px; }
+.empty .empty-t { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+
+/* Ringkasan */
+.donut { position: relative; width: 210px; height: 210px; margin: 18px auto 8px; filter: drop-shadow(0 8px 20px rgba(91, 63, 209, 0.18)); }
+.donut svg { width: 100%; height: 100%; }
+.donut .mid { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding: 0 44px; }
+.donut .mid .k { font-size: 13px; color: var(--muted); }
+.donut .mid .v { font-size: 18px; font-weight: 700; overflow-wrap: anywhere; }
+.cat { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.cat .head { display: grid; grid-template-columns: 10px 1fr auto; gap: 12px; align-items: center; }
+.cat .pct { color: var(--muted); font-size: 13px; margin-left: 6px; font-weight: 400; }
+.bar { height: 6px; background: var(--surface); border-radius: 6px; margin: 8px 0 4px 22px; overflow: hidden; }
+.bar > i { display: block; height: 100%; background: var(--accent); border-radius: 6px; }
+.bar.over > i { background: var(--expense); }
+.budget-note { margin-left: 22px; font-size: 13px; color: var(--muted); }
+.stats { margin-top: 26px; }
+.stat { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.stat .k { color: var(--muted); }
+.stat .v { font-weight: 600; text-align: right; }
+h2 { font-size: 17px; font-weight: 650; }
+
+/* Pengaturan */
+.section { margin-top: 26px; }
+.section p.muted { font-size: 14px; margin-top: 2px; }
+.field { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.field input {
+  width: 150px; text-align: right; border: 1px solid var(--edge); background: var(--field);
+  border-radius: 12px; padding: 9px 12px; font-size: 16px; box-shadow: inset 0 1px 0 var(--hi);
+}
+.btns { display: grid; gap: 10px; margin-top: 12px; }
+
+/* Tombol */
+.btn {
+  border: 0; background: var(--accent); color: var(--accent-ink); border-radius: 16px;
+  padding: 14px; font-size: 16px; font-weight: 600; width: 100%; min-height: 50px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 6px 16px var(--accent-glow);
+  transition: transform 0.2s, opacity 0.2s;
+}
+.btn.ghost { background: var(--card); color: var(--text); border: 1px solid var(--edge); box-shadow: inset 0 1px 0 var(--hi); }
+.btn.danger { background: transparent; color: var(--expense); box-shadow: none; }
+.btn:active { transform: scale(0.98); opacity: 0.88; }
+
+/* Navigasi kaca cair */
+.nav {
+  position: fixed; z-index: 20; left: 50%; transform: translateX(-50%);
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  width: min(calc(100% - 32px), 420px); height: 66px; padding: 6px;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border-radius: 999px; border: 1px solid var(--edge);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(24px) saturate(190%); backdrop-filter: blur(24px) saturate(190%);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--hi), inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+}
+.tab {
+  position: relative; z-index: 1; border: 0; background: transparent; color: var(--muted);
+  display: grid; justify-items: center; align-content: center; gap: 2px; font-size: 12px;
+  border-radius: 999px; transition: color 0.3s;
+}
+.tab[aria-current="page"] { color: var(--accent); font-weight: 600; }
+.lens { position: absolute; z-index: 0; left: 6px; top: 6px; bottom: 6px; width: calc((100% - 12px) / 3); pointer-events: none; will-change: transform; }
+.blob {
+  position: absolute; inset: 0; border-radius: 999px; background: var(--lens);
+  border: 1px solid var(--edge);
+  box-shadow: inset 0 1.5px 1px var(--hi), inset 0 -2px 4px rgba(0, 0, 0, 0.06), inset 0 0 14px rgba(255, 255, 255, 0.2), var(--lens-shadow);
+  transition: box-shadow 0.3s, filter 0.3s;
+}
+.lens.lifted .blob {
+  filter: brightness(1.08) saturate(1.2);
+  box-shadow: inset 0 2px 1px var(--hi), inset 0 -2px 6px rgba(0, 0, 0, 0.08), inset 0 0 20px rgba(255, 255, 255, 0.35), 0 8px 26px var(--accent-glow);
+}
+
+.fab {
+  position: fixed; z-index: 21; width: 58px; height: 58px; display: grid; place-items: center; border-radius: 50%;
+  right: calc(50vw - min(50vw - 16px, 210px));
+  bottom: calc(12px + 66px + 14px + env(safe-area-inset-bottom, 0px));
+  color: var(--accent-ink); border: 1px solid rgba(255, 255, 255, 0.4);
+  background: radial-gradient(120% 120% at 28% 12%, rgba(255, 255, 255, 0.6), transparent 46%), var(--accent);
+  box-shadow: inset 0 1.5px 1px rgba(255, 255, 255, 0.7), inset 0 -3px 8px rgba(0, 0, 0, 0.2), 0 10px 26px var(--accent-glow);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  transition: transform 0.25s cubic-bezier(0.34, 1.4, 0.5, 1);
+}
+.fab svg.ic { width: 26px; height: 26px; stroke-width: 2.2; }
+.fab:active { transform: scale(0.9); }
+
+/* Sheet kaca melayang */
+.scrim { position: fixed; inset: 0; background: var(--scrim); z-index: 30; animation: fade 0.25s ease-out; }
+.sheet {
+  position: fixed; z-index: 31; left: 8px; right: 8px; margin: 0 auto; max-width: 464px;
+  bottom: calc(8px + var(--kb, 0px) + env(safe-area-inset-bottom, 0px));
+  max-height: min(92vh, calc(100vh - var(--kb, 0px) - 24px)); overflow: auto;
+  padding: 20px 20px 20px; border-radius: 32px; border: 1px solid var(--edge);
+  background: var(--glass-strong);
+  -webkit-backdrop-filter: blur(30px) saturate(190%); backdrop-filter: blur(30px) saturate(190%);
+  box-shadow: var(--glass-shadow), inset 0 1.5px 0 var(--hi);
+  animation: rise 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sheet h2 { margin-bottom: 14px; }
+.lbl { font-size: 14px; color: var(--muted); margin: 18px 0 8px; display: block; }
+.amount-wrap { display: flex; align-items: baseline; gap: 8px; margin-top: 18px; border-bottom: 2px solid var(--line); padding-bottom: 6px; transition: border-color 0.25s; }
+.amount-wrap:focus-within { border-color: var(--accent); }
+.amount-wrap span { font-size: 22px; color: var(--muted); font-weight: 600; }
+.amount { flex: 1; min-width: 0; border: 0; background: transparent; font-size: 34px; font-weight: 700; outline: none; letter-spacing: -0.01em; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  border: 1px solid var(--edge); background: var(--field); border-radius: 999px; padding: 8px 14px; font-size: 15px; min-height: 40px;
+  box-shadow: inset 0 1px 0 var(--hi); transition: background 0.25s, color 0.25s, transform 0.2s;
+}
+.chip:active { transform: scale(0.95); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; box-shadow: 0 4px 12px var(--accent-glow); }
+.text-in { width: 100%; border: 1px solid var(--edge); background: var(--field); border-radius: 14px; padding: 12px; font-size: 16px; min-height: 46px; box-shadow: inset 0 1px 0 var(--hi); }
+.err { color: var(--expense); font-size: 14px; margin-top: 12px; min-height: 20px; }
+.sheet .btns { margin-top: 8px; }
+
+.toast {
+  position: fixed; left: 50%; transform: translateX(-50%); z-index: 40;
+  bottom: calc(158px + env(safe-area-inset-bottom, 0px));
+  background: var(--text); color: var(--bg); padding: 10px 18px; border-radius: 999px; font-size: 14px;
+  max-width: calc(100vw - 40px); box-shadow: var(--glass-shadow); animation: fade 0.2s ease-out;
+}
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes rise { from { transform: translateY(70px) scale(0.97); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .scrim, .sheet, .toast { animation: none; }
+  * { transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+<div id="shell">
+  <header class="top" id="top"></header>
+  <div id="viewport">
+    <div id="track">
+      <section class="pane" aria-label="Transaksi"><div class="inner"></div></section>
+      <section class="pane" aria-label="Ringkasan"><div class="inner"></div></section>
+      <section class="pane" aria-label="Pengaturan"><div class="inner"></div></section>
+    </div>
+    <div id="ripple" aria-hidden="true"></div>
+  </div>
+</div>
+<div id="overlay"></div>
+
+<script>
+'use strict'
+
+/* ---------- Konfigurasi (ubah kategori di sini) ---------- */
+const CONFIG = {
+  storageKey: 'catatan-keuangan-v1',
+  locale: 'id-ID',
+  currency: 'IDR',
+  categories: {
+    expense: [
+      { id: 'makan', name: 'Makan dan minum', color: '#E8A33D' },
+      { id: 'transport', name: 'Transportasi', color: '#4C8DF6' },
+      { id: 'kuliah', name: 'Kuliah', color: '#8B6FD6' },
+      { id: 'belanja', name: 'Belanja', color: '#E0648A' },
+      { id: 'tagihan', name: 'Tagihan dan pulsa', color: '#4DB6AC' },
+      { id: 'hiburan', name: 'Hiburan', color: '#F08A5D' },
+      { id: 'kesehatan', name: 'Kesehatan', color: '#6CC08B' },
+      { id: 'lain-keluar', name: 'Lainnya', color: '#9AA3B2' }
+    ],
+    income: [
+      { id: 'uang-saku', name: 'Uang saku', color: '#16A34A' },
+      { id: 'gaji', name: 'Gaji', color: '#16A34A' },
+      { id: 'beasiswa', name: 'Beasiswa', color: '#16A34A' },
+      { id: 'freelance', name: 'Freelance', color: '#16A34A' },
+      { id: 'lain-masuk', name: 'Lainnya', color: '#16A34A' }
+    ]
+  }
+}
+const PAGES = [
+  { id: 'home', label: 'Transaksi', icon: 'list' },
+  { id: 'summary', label: 'Ringkasan', icon: 'pie' },
+  { id: 'settings', label: 'Pengaturan', icon: 'sliders' }
+]
+const EASE_OUT = 'cubic-bezier(0.22, 1, 0.36, 1)'
+const EASE_SPRING = 'cubic-bezier(0.34, 1.36, 0.5, 1)'
+
+/* ---------- Helper umum ---------- */
+const rupiah = new Intl.NumberFormat(CONFIG.locale, { style: 'currency', currency: CONFIG.currency, maximumFractionDigits: 0, minimumFractionDigits: 0 })
+const plain = new Intl.NumberFormat(CONFIG.locale)
+const fmt = n => rupiah.format(n)
+const signed = n => (n < 0 ? '\u2212' : n > 0 ? '+' : '') + fmt(Math.abs(n))
+const pad = n => String(n).padStart(2, '0')
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7)
+const clamp = (n, a, b) => Math.min(b, Math.max(a, n))
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/
+const reduceMotion = () => !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+
+function todayStr() {
+  const d = new Date()
+  return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate())
+}
+function monthLabel(key) {
+  const [y, m] = key.split('-').map(Number)
+  return new Date(y, m - 1, 1).toLocaleDateString(CONFIG.locale, { month: 'long', year: 'numeric' })
+}
+function dayLabel(str) {
+  const [y, m, d] = str.split('-').map(Number)
+  return new Date(y, m - 1, d).toLocaleDateString(CONFIG.locale, { weekday: 'long', day: 'numeric', month: 'long' })
+}
+function daysInMonth(key) {
+  const [y, m] = key.split('-').map(Number)
+  return new Date(y, m, 0).getDate()
+}
+function shiftMonthKey(key, delta) {
+  const [y, m] = key.split('-').map(Number)
+  const d = new Date(y, m - 1 + delta, 1)
+  return d.getFullYear() + '-' + pad(d.getMonth() + 1)
+}
+function catOf(type, id) {
+  const list = CONFIG.categories[type]
+  return list.find(c => c.id === id) || list[list.length - 1]
+}
+const sum = (list, type) => list.filter(t => !type || t.type === type).reduce((s, t) => s + t.amount, 0)
+
+/* DOM builder: semua teks lewat text node, aman dari injeksi */
+function h(tag, props = {}, ...kids) {
+  const el = document.createElement(tag)
+  for (const [k, v] of Object.entries(props)) {
+    if (v == null || v === false) continue
+    if (k === 'class') el.className = v
+    else if (k === 'style') el.style.cssText = v
+    else if (k.startsWith('on')) el.addEventListener(k.slice(2), v)
+    else if (k in el) el[k] = v
+    else el.setAttribute(k, v)
+  }
+  for (const kid of kids.flat()) {
+    if (kid == null || kid === false) continue
+    el.append(kid.nodeType ? kid : document.createTextNode(String(kid)))
+  }
+  return el
+}
+
+const ICONS = {
+  list: '<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>',
+  pie: '<path d="M12 3v9h9"/><path d="M20.5 15.5A9 9 0 1 1 8.5 3.5"/>',
+  sliders: '<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  prev: '<path d="M15 6l-6 6 6 6"/>',
+  next: '<path d="M9 6l6 6-6 6"/>'
+}
+function icon(name) {
+  const s = h('span', { 'aria-hidden': 'true', style: 'display:grid' })
+  s.innerHTML = '<svg class="ic" viewBox="0 0 24 24">' + ICONS[name] + '</svg>'
+  return s
+}
+
+/* ---------- Data ---------- */
+function sanitizeTx(t) {
+  if (!t || typeof t !== 'object') return null
+  const type = t.type === 'income' ? 'income' : t.type === 'expense' ? 'expense' : null
+  const amount = Math.round(Number(t.amount))
+  if (!type || !(amount > 0) || !isFinite(amount) || typeof t.date !== 'string' || !DATE_RE.test(t.date)) return null
+  return {
+    id: String(t.id || uid()).slice(0, 40),
+    created: Number(t.created) || Date.now(),
+    type, amount,
+    category: String(t.category || '').slice(0, 40),
+    date: t.date,
+    note: String(t.note || '').slice(0, 80)
+  }
+}
+function sanitizeBudgets(b) {
+  const out = {}
+  if (b && typeof b === 'object') {
+    for (const [k, v] of Object.entries(b)) {
+      const n = Math.round(Number(v))
+      if (n > 0 && isFinite(n)) out[String(k).slice(0, 40)] = n
+    }
+  }
+  return out
+}
+function load() {
+  try {
+    const raw = localStorage.getItem(CONFIG.storageKey)
+    if (raw) {
+      const d = JSON.parse(raw)
+      return {
+        transactions: (Array.isArray(d.transactions) ? d.transactions : []).map(sanitizeTx).filter(Boolean),
+        budgets: sanitizeBudgets(d.budgets)
+      }
+    }
+  } catch (e) { /* data rusak atau storage tidak tersedia */ }
+  return { transactions: [], budgets: {} }
+}
+function persist() {
+  try {
+    localStorage.setItem(CONFIG.storageKey, JSON.stringify(state.data))
+  } catch (e) {
+    toast('Data tidak bisa disimpan. Cek penyimpanan browser.')
+  }
+}
+
+const state = {
+  data: load(),
+  index: 0,      // halaman tujuan (0..2)
+  p: 0,          // posisi geser kontinu (0..2)
+  month: todayStr().slice(0, 7),
+  filter: 'all'
+}
+
+const monthTx = () => state.data.transactions
+  .filter(t => t.date.startsWith(state.month))
+  .sort((a, b) => b.date.localeCompare(a.date) || b.created - a.created)
+
+/* ---------- Rangka: header, halaman, navigasi ---------- */
+const topEl = document.getElementById('top')
+const viewport = document.getElementById('viewport')
+const track = document.getElementById('track')
+const ripple = document.getElementById('ripple')
+const overlay = document.getElementById('overlay')
+const panes = [...track.children].map(el => ({ el, inner: el.firstElementChild }))
+
+const blob = h('div', { class: 'blob' })
+const lens = h('div', { class: 'lens', 'aria-hidden': 'true' }, blob)
+const tabs = PAGES.map((pg, i) => h('button', { class: 'tab', onclick: () => goTo(i) }, icon(pg.icon), pg.label))
+const navEl = h('nav', { class: 'nav', 'aria-label': 'Menu utama' }, lens, ...tabs)
+const fab = h('button', { class: 'fab', 'aria-label': 'Tambah transaksi', onclick: () => openSheet(null) }, icon('plus'))
+document.body.append(navEl, fab)
+
+const views = [() => viewHome(), () => viewSummary(), () => viewSettings()]
+function renderPane(i) { panes[i].inner.replaceChildren(views[i]()) }
+
+function renderHeader() {
+  topEl.replaceChildren(
+    h('button', { class: 'icon-btn', 'aria-label': 'Bulan sebelumnya', onclick: () => shiftMonth(-1) }, icon('prev')),
+    h('button', { class: 'month', 'aria-label': 'Kembali ke bulan ini', onclick: goToCurrentMonth }, monthLabel(state.month)),
+    h('button', { class: 'icon-btn', 'aria-label': 'Bulan berikutnya', onclick: () => shiftMonth(1) }, icon('next'))
+  )
+}
+
+function renderAll() {
+  renderHeader()
+  panes.forEach((_, i) => renderPane(i))
+}
+
+function shiftMonth(dir) {
+  state.month = shiftMonthKey(state.month, dir)
+  renderAll()
+  animateContent(dir)
+}
+function goToCurrentMonth() {
+  const now = todayStr().slice(0, 7)
+  if (state.month === now) return
+  const dir = now > state.month ? 1 : -1
+  state.month = now
+  renderAll()
+  animateContent(dir)
+}
+function animateContent(dir) {
+  if (reduceMotion()) return
+  panes.forEach(p => {
+    if (p.inner.animate) {
+      p.inner.animate(
+        [{ opacity: 0, transform: 'translate3d(' + dir * 26 + 'px,0,0)' }, { opacity: 1, transform: 'translate3d(0,0,0)' }],
+        { duration: 380, easing: EASE_OUT }
+      )
+    }
+  })
+}
+
+/* ---------- Geser antar halaman ---------- */
+let settling = false
+let settleTimer = 0
+
+function setProgress(p) {
+  state.p = p
+  track.style.transform = 'translate3d(' + (-p * 100 / PAGES.length) + '%,0,0)'
+  lens.style.transform = 'translate3d(' + (p * 100) + '%,0,0)'
+  panes.forEach((pane, i) => {
+    const off = i - p
+    pane.el.style.opacity = String(1 - 0.45 * Math.min(1, Math.abs(off)))
+    pane.inner.style.transform = 'translate3d(' + (-off * 30) + 'px,0,0)'
+  })
+  const fabO = clamp(2 - p, 0, 1)
+  fab.style.opacity = String(fabO)
+  fab.style.pointerEvents = fabO < 0.4 ? 'none' : 'auto'
+  const near = clamp(Math.round(p), 0, PAGES.length - 1)
+  tabs.forEach((t, i) => {
+    if (i === near) t.setAttribute('aria-current', 'page')
+    else t.removeAttribute('aria-current')
+  })
+}
+
+function setTransitions(on) {
+  track.style.transition = on ? 'transform 520ms ' + EASE_OUT : 'none'
+  lens.style.transition = on ? 'transform 640ms ' + EASE_SPRING : 'none'
+  fab.style.transition = on ? 'opacity 320ms ease, transform 0.25s cubic-bezier(0.34, 1.4, 0.5, 1)' : 'none'
+  panes.forEach(p => {
+    p.el.style.transition = on ? 'opacity 520ms ease' : 'none'
+    p.inner.style.transition = on ? 'transform 520ms ' + EASE_OUT : 'none'
+  })
+}
+
+function syncInert() {
+  panes.forEach((p, i) => {
+    p.el.inert = i !== state.index
+    p.el.setAttribute('aria-hidden', String(i !== state.index))
+  })
+}
+
+function finishSettle() {
+  settling = false
+  setTransitions(false)
+  lens.classList.remove('lifted')
+  blob.style.transform = ''
+  ripple.style.opacity = '0'
+  fab.style.transition = ''
+}
+
+function pulseBlob() {
+  if (!blob.animate) return
+  const from = blob.style.transform || 'scale(1, 1)'
+  blob.style.transform = ''
+  blob.animate(
+    [
+      { transform: from },
+      { transform: 'scale(1.3, 0.88)', offset: 0.36 },
+      { transform: 'scale(0.97, 1.05)', offset: 0.72 },
+      { transform: 'scale(1, 1)' }
+    ],
+    { duration: 600, easing: 'ease-out' }
+  )
+}
+
+function goTo(target) {
+  target = clamp(Math.round(target), 0, PAGES.length - 1)
+  state.index = target
+  syncInert()
+  clearTimeout(settleTimer)
+  if (reduceMotion()) {
+    setTransitions(false)
+    setProgress(target)
+    finishSettle()
+    return
+  }
+  settling = true
+  lens.classList.add('lifted')
+  setTransitions(true)
+  setProgress(target)
+  pulseBlob()
+  settleTimer = setTimeout(finishSettle, 660)
+}
+
+/* posisi nyata saat animasi masih berjalan */
+function currentProgress() {
+  if (!settling) return state.p
+  try {
+    const m = new DOMMatrixReadOnly(getComputedStyle(track).transform)
+    const p = -m.m41 / viewport.clientWidth
+    if (isFinite(p)) return p
+  } catch (e) { /* pakai nilai terakhir */ }
+  return state.p
+}
+
+function stretchBlob(v) {
+  const s = Math.min(0.5, Math.abs(v) * 0.32)
+  blob.style.transformOrigin = v < 0 ? '100% 50%' : '0% 50%'
+  blob.style.transform = 'scale(' + (1 + s) + ', ' + (1 - s * 0.3) + ')'
+}
+
+function moveRipple(clientX, v) {
+  const r = viewport.getBoundingClientRect()
+  const x = clientX - r.left - 70
+  ripple.style.transform = 'translate3d(' + x + 'px,0,0) scaleX(' + (1 + Math.min(Math.abs(v), 2) * 0.35) + ')'
+  ripple.style.opacity = String(Math.min(0.95, 0.25 + Math.abs(v) * 0.7))
+}
+
+const swipe = { on: false, lock: null, x0: 0, y0: 0, p0: 0, lastX: 0, lastT: 0, v: 0, froze: false, blockClick: false }
+
+viewport.addEventListener('pointerdown', e => {
+  if (e.pointerType === 'mouse' && e.button !== 0) return
+  if (overlay.firstChild) return
+  swipe.on = true
+  swipe.lock = null
+  swipe.x0 = swipe.lastX = e.clientX
+  swipe.y0 = e.clientY
+  swipe.lastT = e.timeStamp
+  swipe.v = 0
+  swipe.froze = false
+  swipe.p0 = currentProgress()
+  if (settling) {
+    clearTimeout(settleTimer)
+    settling = false
+    setTransitions(false)
+    setProgress(swipe.p0)
+    swipe.froze = true
+  }
+})
+
+viewport.addEventListener('pointermove', e => {
+  if (!swipe.on) return
+  const dx = e.clientX - swipe.x0
+  const dy = e.clientY - swipe.y0
+  if (!swipe.lock) {
+    if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return
+    swipe.lock = Math.abs(dx) > Math.abs(dy) * 1.3 ? 'x' : 'y'
+    if (swipe.lock === 'x') {
+      try { viewport.setPointerCapture(e.pointerId) } catch (err) { /* abaikan */ }
+      lens.classList.add('lifted')
+      setTransitions(false)
+    }
+  }
+  if (swipe.lock !== 'x') return
+  const max = PAGES.length - 1
+  let p = swipe.p0 - dx / viewport.clientWidth
+  if (p < 0) p *= 0.35
+  else if (p > max) p = max + (p - max) * 0.35
+  const dt = e.timeStamp - swipe.lastT
+  if (dt > 0) {
+    swipe.v = swipe.v * 0.7 + ((e.clientX - swipe.lastX) / dt) * 0.3
+    swipe.lastX = e.clientX
+    swipe.lastT = e.timeStamp
+  }
+  setProgress(p)
+  stretchBlob(swipe.v)
+  moveRipple(e.clientX, swipe.v)
+})
+
+function endSwipe(e) {
+  if (!swipe.on) return
+  swipe.on = false
+  if (swipe.lock !== 'x') {
+    if (swipe.froze) goTo(state.p)
+    return
+  }
+  swipe.blockClick = true
+  setTimeout(() => { swipe.blockClick = false }, 80)
+  if (e && e.timeStamp - swipe.lastT > 80) swipe.v = 0 // jari sempat berhenti, abaikan kecepatan lama
+  const start = Math.round(swipe.p0)
+  const projected = state.p - (swipe.v * 200) / viewport.clientWidth
+  ripple.style.opacity = '0'
+  goTo(clamp(Math.round(projected), start - 1, start + 1))
+}
+viewport.addEventListener('pointerup', endSwipe)
+viewport.addEventListener('pointercancel', endSwipe)
+viewport.addEventListener('click', e => {
+  if (swipe.blockClick) { e.stopPropagation(); e.preventDefault() }
+}, true)
+
+/* ---------- Halaman: Transaksi ---------- */
+function empty(title, hint) {
+  return h('div', { class: 'empty' }, h('p', { class: 'empty-t' }, title), h('p', { class: 'muted' }, hint))
+}
+
+function viewHome() {
+  const all = monthTx()
+  const income = sum(all, 'income')
+  const expense = sum(all, 'expense')
+  const balance = income - expense
+  const shown = state.filter === 'all' ? all : all.filter(t => t.type === state.filter)
+
+  const balEl = h('div', { class: 'balance' + (balance < 0 ? ' neg' : '') }, fmt(balance))
+  const len = fmt(balance).length
+  if (len > 16) balEl.style.fontSize = '28px'
+  else if (len > 13) balEl.style.fontSize = '34px'
+
+  const filters = h('div', { class: 'seg filters', role: 'group', 'aria-label': 'Filter transaksi' },
+    ...[['all', 'Semua'], ['income', 'Masuk'], ['expense', 'Keluar']].map(([id, label]) =>
+      h('button', { 'aria-pressed': String(state.filter === id), onclick: () => { state.filter = id; renderPane(0) } }, label))
+  )
+
+  const list = h('div', { class: 'list' })
+  if (!shown.length) {
+    list.append(all.length
+      ? empty('Tidak ada transaksi di filter ini', 'Pilih filter lain untuk melihat transaksi bulan ini.')
+      : empty('Belum ada transaksi bulan ini', 'Tekan tombol + untuk mencatat pemasukan atau pengeluaran pertama.'))
+  } else {
+    const groups = new Map()
+    shown.forEach(t => { if (!groups.has(t.date)) groups.set(t.date, []); groups.get(t.date).push(t) })
+    for (const [date, items] of groups) {
+      const net = sum(items, 'income') - sum(items, 'expense')
+      list.append(h('div', { class: 'day' }, h('span', {}, dayLabel(date)), h('span', {}, signed(net))))
+      items.forEach(t => {
+        const cat = catOf(t.type, t.category)
+        list.append(h('button', { class: 'row', onclick: () => openSheet(t) },
+          h('span', { class: 'dot', style: 'background:' + cat.color }),
+          h('span', { class: 'mid' }, h('div', { class: 'name' }, cat.name), t.note ? h('div', { class: 'note' }, t.note) : null),
+          h('span', { class: 'amt ' + (t.type === 'income' ? 'pos' : 'neg') }, (t.type === 'income' ? '+' : '\u2212') + fmt(t.amount))
+        ))
+      })
+    }
+  }
+
+  return h('div', {},
+    h('section', { class: 'hero' },
+      h('div', { class: 'label' }, 'Saldo bulan ini'),
+      balEl,
+      h('div', { class: 'flow' },
+        h('div', {}, h('div', { class: 'k' }, 'Pemasukan'), h('div', { class: 'v pos' }, fmt(income))),
+        h('div', {}, h('div', { class: 'k' }, 'Pengeluaran'), h('div', { class: 'v neg' }, fmt(expense)))
+      )
+    ),
+    filters,
+    list
+  )
+}
+
+/* ---------- Halaman: Ringkasan ---------- */
+function donutSvg(items, total) {
+  const r = 60
+  const c = 2 * Math.PI * r
+  let offset = 0
+  const segs = items.map(it => {
+    const len = it.value / total * c
+    const gap = items.length > 1 ? 2 : 0
+    const draw = Math.max(len - gap, 0)
+    const s = '<circle cx="80" cy="80" r="' + r + '" fill="none" stroke="' + it.cat.color + '" stroke-width="20" stroke-dasharray="' + draw + ' ' + (c - draw) + '" stroke-dashoffset="' + (-offset) + '"/>'
+    offset += len
+    return s
+  }).join('')
+  return '<svg viewBox="0 0 160 160" role="img" aria-label="Diagram pengeluaran per kategori"><g transform="rotate(-90 80 80)"><circle cx="80" cy="80" r="' + r + '" fill="none" stroke="var(--line)" stroke-width="20"/>' + segs + '</g></svg>'
+}
+
+function viewSummary() {
+  const all = monthTx()
+  const exp = all.filter(t => t.type === 'expense')
+  const income = sum(all, 'income')
+  const total = sum(exp)
+  if (!total) return h('div', {}, empty('Belum ada pengeluaran bulan ini', 'Catat pengeluaran dengan tombol + agar ringkasan muncul di sini.'))
+
+  const byCat = new Map()
+  exp.forEach(t => {
+    const cat = catOf('expense', t.category)
+    byCat.set(cat.id, { cat, value: (byCat.get(cat.id)?.value || 0) + t.amount })
+  })
+  const items = [...byCat.values()].sort((a, b) => b.value - a.value)
+
+  const donut = h('div', { class: 'donut' }, h('div', { class: 'mid' }, h('div', { class: 'k' }, 'Total keluar'), h('div', { class: 'v' }, fmt(total))))
+  donut.insertAdjacentHTML('afterbegin', donutSvg(items, total))
+
+  const rows = items.map(({ cat, value }) => {
+    const budget = state.data.budgets[cat.id]
+    const pct = Math.round(value / total * 100)
+    const row = h('div', { class: 'cat' },
+      h('div', { class: 'head' },
+        h('span', { class: 'dot', style: 'background:' + cat.color }),
+        h('span', {}, cat.name, h('span', { class: 'pct' }, pct + '%')),
+        h('strong', {}, fmt(value))
+      )
+    )
+    if (budget) {
+      const over = value > budget
+      row.append(
+        h('div', { class: 'bar' + (over ? ' over' : ''), role: 'img', 'aria-label': 'Terpakai ' + Math.round(value / budget * 100) + '% dari anggaran' }, h('i', { style: 'width:' + Math.min(100, value / budget * 100) + '%' })),
+        h('div', { class: 'budget-note' }, over ? 'Melebihi anggaran ' + fmt(value - budget) : 'Sisa ' + fmt(budget - value) + ' dari anggaran ' + fmt(budget))
+      )
+    }
+    return row
+  })
+
+  const isCurrent = state.month === todayStr().slice(0, 7)
+  const days = isCurrent ? Number(todayStr().slice(8)) : daysInMonth(state.month)
+  const biggest = exp.reduce((a, b) => (b.amount > a.amount ? b : a))
+  const saved = income > 0 ? Math.round((income - total) / income * 100) + '%' : '-'
+  const stat = (k, v) => h('div', { class: 'stat' }, h('span', { class: 'k' }, k), h('span', { class: 'v' }, v))
+
+  return h('div', {},
+    donut,
+    h('div', {}, rows),
+    h('section', { class: 'stats' },
+      h('h2', {}, 'Gambaran bulan ini'),
+      stat('Rata-rata keluar per hari', fmt(Math.round(total / days))),
+      stat('Pengeluaran terbesar', fmt(biggest.amount) + ' (' + catOf('expense', biggest.category).name + ')'),
+      stat('Sisa dari pemasukan', saved)
+    )
+  )
+}
+
+/* ---------- Halaman: Pengaturan ---------- */
+function viewSettings() {
+  const budgetFields = CONFIG.categories.expense.map(cat => {
+    const b = state.data.budgets[cat.id]
+    return h('label', { class: 'field' },
+      h('span', {}, cat.name),
+      h('input', {
+        type: 'text', inputMode: 'numeric', placeholder: 'Tanpa batas', autocomplete: 'off',
+        'aria-label': 'Anggaran ' + cat.name, value: b ? plain.format(b) : '',
+        oninput: e => {
+          const d = e.target.value.replace(/\D/g, '').slice(0, 12)
+          e.target.value = d ? plain.format(Number(d)) : ''
+        },
+        onchange: e => {
+          const n = Number(e.target.value.replace(/\D/g, '') || 0)
+          if (n > 0) state.data.budgets[cat.id] = n
+          else delete state.data.budgets[cat.id]
+          persist()
+          renderPane(1)
+          toast('Anggaran disimpan')
+        }
+      })
+    )
+  })
+
+  const fileIn = h('input', { type: 'file', accept: '.json,application/json', style: 'display:none', onchange: importJson })
+
+  return h('div', {},
+    h('section', { class: 'section' },
+      h('h2', {}, 'Anggaran bulanan'),
+      h('p', { class: 'muted' }, 'Isi batas per kategori. Progresnya tampil di halaman Ringkasan.'),
+      budgetFields
+    ),
+    h('section', { class: 'section' },
+      h('h2', {}, 'Cadangan data'),
+      h('p', { class: 'muted' }, 'Data tersimpan di perangkat ini saja. Ekspor secara berkala agar tidak hilang.'),
+      h('div', { class: 'btns' },
+        h('button', { class: 'btn ghost', onclick: exportJson }, 'Ekspor JSON'),
+        h('button', { class: 'btn ghost', onclick: exportCsv }, 'Ekspor CSV'),
+        h('button', { class: 'btn ghost', onclick: () => fileIn.click() }, 'Impor JSON'),
+        fileIn
+      )
+    ),
+    h('section', { class: 'section' },
+      h('div', { class: 'btns' },
+        h('button', { class: 'btn danger', onclick: resetAll }, 'Hapus semua data')
+      )
+    )
+  )
+}
+
+/* ---------- Ekspor dan impor ---------- */
+async function deliver(filename, text, mime) {
+  const file = new File([text], filename, { type: mime })
+  try {
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({ files: [file], title: filename })
+      return
+    }
+  } catch (e) {
+    if (e && e.name === 'AbortError') return
+  }
+  const url = URL.createObjectURL(file)
+  const a = h('a', { href: url, download: filename })
+  document.body.append(a)
+  a.click()
+  a.remove()
+  setTimeout(() => URL.revokeObjectURL(url), 4000)
+}
+
+function exportJson() {
+  if (!state.data.transactions.length) return toast('Belum ada data untuk diekspor')
+  const payload = { app: 'catatan-keuangan', version: 1, exported: new Date().toISOString(), transactions: state.data.transactions, budgets: state.data.budgets }
+  deliver('catatan-keuangan-' + todayStr() + '.json', JSON.stringify(payload, null, 2), 'application/json')
+}
+
+function exportCsv() {
+  if (!state.data.transactions.length) return toast('Belum ada data untuk diekspor')
+  const cell = v => {
+    let s = String(v)
+    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s
+    return '"' + s.replace(/"/g, '""') + '"'
+  }
+  const rows = [...state.data.transactions].sort((a, b) => a.date.localeCompare(b.date) || a.created - b.created)
+    .map(t => [t.date, t.type === 'income' ? 'Pemasukan' : 'Pengeluaran', catOf(t.type, t.category).name, t.amount, t.note].map((v, i) => (i === 3 ? v : cell(v))).join(','))
+  const csv = '\ufeff' + ['Tanggal,Jenis,Kategori,Nominal,Catatan', ...rows].join('\n')
+  deliver('catatan-keuangan-' + todayStr() + '.csv', csv, 'text/csv')
+}
+
+async function importJson(e) {
+  const file = e.target.files && e.target.files[0]
+  e.target.value = ''
+  if (!file) return
+  try {
+    const d = JSON.parse(await file.text())
+    const incoming = (Array.isArray(d.transactions) ? d.transactions : []).map(sanitizeTx).filter(Boolean)
+    const known = new Set(state.data.transactions.map(t => t.id))
+    const fresh = incoming.filter(t => !known.has(t.id))
+    if (!fresh.length && !Object.keys(d.budgets || {}).length) return toast('Tidak ada data baru di file ini')
+    if (!confirm('Impor ' + fresh.length + ' transaksi baru? Data yang sudah ada tidak dihapus.')) return
+    state.data.transactions.push(...fresh)
+    Object.assign(state.data.budgets, sanitizeBudgets(d.budgets))
+    persist()
+    renderAll()
+    toast(fresh.length + ' transaksi diimpor')
+  } catch (err) {
+    toast('File tidak valid. Pilih file JSON hasil ekspor aplikasi ini.')
+  }
+}
+
+function resetAll() {
+  if (!confirm('Hapus semua transaksi dan anggaran? Tindakan ini tidak bisa dibatalkan.')) return
+  state.data = { transactions: [], budgets: {} }
+  persist()
+  renderAll()
+  toast('Semua data dihapus')
+}
+
+/* ---------- Sheet tambah/ubah ---------- */
+let sheetToken = 0
+
+function defaultDate() {
+  const now = todayStr()
+  return state.month === now.slice(0, 7) ? now : state.month + '-01'
+}
+
+function openSheet(tx) {
+  sheetToken++
+  const editing = !!tx
+  const f = {
+    type: tx ? tx.type : 'expense',
+    amount: tx ? tx.amount : 0,
+    category: tx ? catOf(tx.type, tx.category).id : CONFIG.categories.expense[0].id,
+    date: tx ? tx.date : defaultDate(),
+    note: tx ? tx.note : ''
+  }
+
+  const err = h('div', { class: 'err', role: 'alert' })
+  const typeBox = h('div', { class: 'seg', role: 'group', 'aria-label': 'Jenis transaksi' })
+  const chipBox = h('div', { class: 'chips', role: 'group', 'aria-label': 'Kategori' })
+
+  const drawType = () => typeBox.replaceChildren(
+    ...[['expense', 'Pengeluaran'], ['income', 'Pemasukan']].map(([id, label]) =>
+      h('button', {
+        'aria-pressed': String(f.type === id),
+        onclick: () => {
+          if (f.type === id) return
+          f.type = id
+          f.category = CONFIG.categories[id][0].id
+          drawType(); drawChips()
+        }
+      }, label))
+  )
+  const drawChips = () => chipBox.replaceChildren(
+    ...CONFIG.categories[f.type].map(c =>
+      h('button', { class: 'chip', 'aria-pressed': String(f.category === c.id), onclick: () => { f.category = c.id; drawChips() } }, c.name))
+  )
+  drawType()
+  drawChips()
+
+  const amountEl = h('input', {
+    class: 'amount', type: 'text', inputMode: 'numeric', placeholder: '0', autocomplete: 'off', 'aria-label': 'Nominal dalam rupiah',
+    value: f.amount ? plain.format(f.amount) : '',
+    oninput: e => {
+      const d = e.target.value.replace(/\D/g, '').slice(0, 12)
+      f.amount = Number(d || 0)
+      e.target.value = d ? plain.format(f.amount) : ''
+    }
+  })
+
+  const save = () => {
+    if (!(f.amount > 0)) { err.textContent = 'Isi nominal lebih dari 0.'; amountEl.focus(); return }
+    if (!DATE_RE.test(f.date)) { err.textContent = 'Pilih tanggal yang valid.'; return }
+    const rec = { type: f.type, amount: f.amount, category: f.category, date: f.date, note: f.note.trim() }
+    if (editing) {
+      const target = state.data.transactions.find(t => t.id === tx.id)
+      if (target) Object.assign(target, rec)
+    } else {
+      state.data.transactions.push({ id: uid(), created: Date.now(), ...rec })
+    }
+    persist()
+    state.month = f.date.slice(0, 7)
+    closeSheet()
+    renderAll()
+    toast(editing ? 'Perubahan disimpan' : 'Transaksi disimpan')
+  }
+
+  const remove = () => {
+    if (!confirm('Hapus transaksi ini?')) return
+    state.data.transactions = state.data.transactions.filter(t => t.id !== tx.id)
+    persist()
+    closeSheet()
+    renderAll()
+    toast('Transaksi dihapus')
+  }
+
+  const sheet = h('div', { class: 'sheet', role: 'dialog', 'aria-modal': 'true', 'aria-label': editing ? 'Ubah transaksi' : 'Tambah transaksi' },
+    h('h2', {}, editing ? 'Ubah transaksi' : 'Tambah transaksi'),
+    typeBox,
+    h('div', { class: 'amount-wrap' }, h('span', {}, 'Rp'), amountEl),
+    h('span', { class: 'lbl' }, 'Kategori'),
+    chipBox,
+    h('label', { class: 'lbl', for: 'f-date' }, 'Tanggal'),
+    h('input', { id: 'f-date', class: 'text-in', type: 'date', value: f.date, onchange: e => { f.date = e.target.value } }),
+    h('label', { class: 'lbl', for: 'f-note' }, 'Catatan'),
+    h('input', { id: 'f-note', class: 'text-in', type: 'text', maxLength: 80, placeholder: 'Contoh: makan siang', value: f.note, oninput: e => { f.note = e.target.value } }),
+    err,
+    h('div', { class: 'btns' },
+      h('button', { class: 'btn', onclick: save }, 'Simpan'),
+      editing ? h('button', { class: 'btn danger', onclick: remove }, 'Hapus transaksi') : h('button', { class: 'btn ghost', onclick: closeSheet }, 'Batal')
+    )
+  )
+
+  overlay.replaceChildren(h('div', { class: 'scrim', onclick: closeSheet }), sheet)
+  if (!editing) amountEl.focus()
+}
+
+function closeSheet() {
+  const sheet = overlay.querySelector('.sheet')
+  const scrim = overlay.querySelector('.scrim')
+  if (!sheet) return
+  const token = ++sheetToken
+  if (reduceMotion() || !sheet.animate) { overlay.replaceChildren(); return }
+  scrim.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 220, fill: 'forwards' })
+  const anim = sheet.animate(
+    [{ transform: 'none', opacity: 1 }, { transform: 'translateY(50px) scale(0.98)', opacity: 0 }],
+    { duration: 240, easing: 'ease-in', fill: 'forwards' }
+  )
+  anim.onfinish = () => { if (token === sheetToken) overlay.replaceChildren() }
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet() })
+
+/* sheet ikut naik saat keyboard iPhone muncul */
+if (window.visualViewport) {
+  const vv = window.visualViewport
+  const update = () => document.documentElement.style.setProperty('--kb', Math.max(0, window.innerHeight - vv.height - vv.offsetTop) + 'px')
+  vv.addEventListener('resize', update)
+  vv.addEventListener('scroll', update)
+}
+
+/* ---------- Toast ---------- */
+let toastTimer = 0
+function toast(msg) {
+  document.querySelectorAll('.toast').forEach(el => el.remove())
+  const el = h('div', { class: 'toast', role: 'status' }, msg)
+  document.body.append(el)
+  clearTimeout(toastTimer)
+  toastTimer = setTimeout(() => el.remove(), 2200)
+}
+
+/* ---------- Ikon layar utama iPhone (dibuat otomatis) ---------- */
+function setHomeIcon() {
+  try {
+    const c = document.createElement('canvas')
+    c.width = c.height = 180
+    const x = c.getContext('2d')
+    const g = x.createLinearGradient(0, 0, 180, 180)
+    g.addColorStop(0, '#1B1247')
+    g.addColorStop(1, '#5B3FD1')
+    x.fillStyle = g
+    x.fillRect(0, 0, 180, 180)
+    x.fillStyle = '#FBF4E4'
+    x.font = '700 76px -apple-system, Helvetica, Arial, sans-serif'
+    x.textAlign = 'center'
+    x.textBaseline = 'middle'
+    x.fillText('Rp', 90, 94)
+    document.head.append(h('link', { rel: 'apple-touch-icon', href: c.toDataURL('image/png') }))
+  } catch (e) { /* abaikan jika canvas tidak tersedia */ }
+}
+
+/* ---------- Mulai ---------- */
+setHomeIcon()
+renderAll()
+setProgress(0)
+syncInert()
+</script>
+</body>
+</html>
