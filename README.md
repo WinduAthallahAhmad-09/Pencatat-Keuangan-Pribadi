@@ -2,9 +2,9 @@
 
 Aplikasi pencatat keuangan pribadi berbasis web yang ringan, cantik, dan bisa langsung dipakai tanpa instalasi. Cocok untuk mahasiswa, freelancer, atau siapa saja yang ingin memantau pemasukan dan pengeluaran sehari-hari.
 
-![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
-![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![Single File](https://img.shields.io/badge/Single_File-0%20Dependencies-4CAF50?style=flat)
+![Offline](https://img.shields.io/badge/100%25-Offline-blue?style=flat)
 
 ## ✨ Fitur Utama
 
@@ -98,9 +98,11 @@ Proyek ini adalah **single-file application** — semua kode HTML, CSS, dan Java
 
 ## 🛠️ Teknologi
 
+Proyek ini adalah **single-file application** — seluruh kode CSS dan JavaScript ditulis langsung (inline) di dalam satu file `Pencatat keuangan.html`, tanpa file terpisah dan tanpa dependensi eksternal.
+
 - **HTML5** — Struktur semantik dengan aksesibilitas (ARIA)
-- **CSS3** — Custom properties, glassmorphism, animasi, responsive design
-- **Vanilla JavaScript** — Tanpa framework atau library eksternal
+- **CSS3 (inline `<style>`)** — Custom properties, glassmorphism, animasi, responsive design
+- **Vanilla JavaScript (inline `<script>`)** — Tanpa framework atau library eksternal
 - **localStorage** — Penyimpanan data lokal di browser
 - **Web Share API** — Berbagi file ekspor di perangkat yang mendukung
 
