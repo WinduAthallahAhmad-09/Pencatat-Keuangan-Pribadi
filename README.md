@@ -98,13 +98,15 @@ Proyek ini adalah **single-file application** — semua kode HTML, CSS, dan Java
 
 ## 🛠️ Teknologi
 
-Proyek ini adalah **single-file application** — seluruh kode CSS dan JavaScript ditulis langsung (inline) di dalam satu file `Pencatat keuangan.html`, tanpa file terpisah dan tanpa dependensi eksternal.
+Aplikasi ini dibangun dengan arsitektur **single-file application** — seluruh markup, styling, dan logic dikemas dalam satu file HTML tanpa dependensi eksternal, sehingga dapat dijalankan langsung di browser manapun tanpa proses build.
 
-- **HTML5** — Struktur semantik dengan aksesibilitas (ARIA)
-- **CSS3 (inline `<style>`)** — Custom properties, glassmorphism, animasi, responsive design
-- **Vanilla JavaScript (inline `<script>`)** — Tanpa framework atau library eksternal
-- **localStorage** — Penyimpanan data lokal di browser
-- **Web Share API** — Berbagi file ekspor di perangkat yang mendukung
+| Teknologi | Implementasi |
+|---|---|
+| **HTML5** | Struktur semantik dengan atribut ARIA untuk aksesibilitas |
+| **CSS3** | Inline `<style>` — CSS custom properties, glassmorphism, media queries, dan keyframe animations |
+| **Vanilla JavaScript** | Inline `<script>` — DOM manipulation, state management, dan gesture handling tanpa framework |
+| **Web Storage API** | Persistensi data lokal melalui `localStorage` |
+| **Web Share API** | Native sharing untuk ekspor data pada perangkat yang mendukung |
 
 ## ⚠️ Catatan Penting
 
