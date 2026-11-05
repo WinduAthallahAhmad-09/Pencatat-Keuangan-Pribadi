@@ -1,7 +1,7 @@
 # Catatan Keuangan
 
 [![Live PWA](https://img.shields.io/badge/Live_App-Open-5B3FD1?style=flat)](https://winduathallahahmad-09.github.io/Pencatat-Keuangan-Pribadi/)
-[![PWA](https://img.shields.io/badge/PWA-Installable-5B3FD1?style=flat)](#download-and-install-on-android)
+[![Android APK](https://img.shields.io/badge/Android-APK-5B3FD1?style=flat)](#download-and-install-on-android)
 [![Offline](https://img.shields.io/badge/Offline-Ready-4CAF50?style=flat)](#data-and-offline-support)
 [![Dependencies](https://img.shields.io/badge/Dependencies-0-4CAF50?style=flat)](#technology)
 
@@ -9,7 +9,7 @@ A private, offline-first personal finance tracker for recording income, expenses
 
 The entire application is a single HTML file with inline CSS and vanilla JavaScript. There is no backend, no build step, and no third-party runtime dependency. All transactions are stored locally in the browser, so the app keeps working without an internet connection after its first load.
 
-> **Android availability:** This app is distributed as an installable **Progressive Web App (PWA)**. There is no APK file and no Play Store listing. You install it directly from Chrome on Android.
+> **Android availability:** The app is distributed as a downloadable **APK** for Android. There is no Play Store listing. Download the APK from inside the app under **Pengaturan → Aplikasi Android**, or from the `downloads/` folder in this repository.
 
 **Language note:** The app interface uses Indonesian labels such as **Transaksi**, **Kalender**, and **Pengaturan**. This README uses English and includes the visible Indonesian labels where they are relevant.
 
@@ -83,63 +83,57 @@ The entire application is a single HTML file with inline CSS and vanilla JavaScr
 
 - All data stays in the browser's `localStorage`.
 - No account, cloud sync, analytics, or server-side database.
-- Installable from Chrome on Android.
-- Offline app-shell caching through a service worker.
+- Android APK available for download inside the app.
+- Offline app-shell caching through a service worker in the browser version.
 - JSON export for full backups and restoration.
 - CSV export for Excel, Google Sheets, or other spreadsheet tools.
 - Confirmation dialog before deleting all data.
 
 ## Download and Install on Android
 
-The live app is available at:
-
-**https://winduathallahahmad-09.github.io/Pencatat-Keuangan-Pribadi/**
+The Android app is distributed as an APK file. Install it directly on the phone; no Play Store account is required.
 
 ### Requirements
 
-- An Android phone with a recent version of **Google Chrome**.
-- An internet connection for the first load and installation.
-- Enough local browser storage for app data and cached assets.
+- An Android phone running Android 7.0 (API 24) or newer.
+- **Google Chrome** installed. The APK opens the live app through Chrome.
+- An internet connection for the first launch.
+- Permission to install apps from unknown sources.
 
 ### Visual installation guide
 
-The screenshot below marks the Chrome menu that contains the Android installation option. On Android, the same three-dot menu is located in the top-right corner of the browser.
+The screenshot below shows where to find the APK download button in the app. Both the **Pengaturan** tab and the **Unduh APK Android** button are marked with a red circle.
 
 <p align="center">
-  <a href="docs/screenshots/android-install-guide.png">
-    <img src="docs/screenshots/android-install-guide.png" alt="Annotated Chrome screenshot showing the three-dot menu used to install the PWA on Android" width="380">
+  <a href="docs/screenshots/apk-download-guide.png">
+    <img src="docs/screenshots/apk-download-guide.png" alt="Annotated app screenshot showing the Pengaturan tab and the Unduh APK Android button" width="380">
   </a>
 </p>
-
-1. Open the application in Chrome.
-2. Tap the highlighted **three-dot menu**.
-3. Choose **Install app** or **Add to Home screen**.
-4. Confirm the installation. The app icon then appears on the Android home screen.
 
 ### Installation steps
 
 1. Open the [live application](https://winduathallahahmad-09.github.io/Pencatat-Keuangan-Pribadi/) in **Chrome** on your Android phone.
-2. Wait until the Home page finishes loading.
-3. Tap the **three-dot menu** in the top-right corner of Chrome.
-4. Select **Install app** or **Add to Home screen**. The exact wording depends on the Chrome version.
-5. Confirm the installation.
-6. Open **Catatan Keuangan** from your Android home screen or app drawer.
+2. Tap **Pengaturan** in the bottom navigation.
+3. Scroll to the **Aplikasi Android** section.
+4. Tap **Unduh APK Android**. The file `Catatan-Keuangan-debug-1.0.0.apk` (5.4 MB) is saved to the Downloads folder.
+5. Open the downloaded APK from the notification or from the **Files** app.
+6. If Android blocks the installation, allow **Install unknown apps** for Chrome or the file manager, then return to the APK.
+7. Tap **Install** and wait for the process to finish.
+8. Open **Catatan Keuangan** from the Android home screen or app drawer.
 
-After installation, the app launches in standalone mode without the normal Chrome address bar. The first successful online load stores the app shell for offline use.
+You can also download [`downloads/Catatan-Keuangan-debug-1.0.0.apk`](downloads/Catatan-Keuangan-debug-1.0.0.apk) directly from this repository.
+
+### About the debug build
+
+The APK is a Trusted Web Activity wrapper around the live application, signed with the Android debug key. Install it only for testing. Installing a future release build requires uninstalling this debug build first.
 
 ### Updating the app
 
-Open the installed app while connected to the internet. The service worker fetches the latest app shell and updates the local cache. If an older version is still visible, close the app completely and open it again.
+The APK loads the live web application, so interface updates arrive automatically. Open the app while connected to the internet. If an older version is still visible, close the app completely and open it again.
 
 ### Uninstalling the app
 
-Long-press the app icon and choose **Uninstall** or open **App info** and select **Uninstall**. Export a JSON backup before uninstalling or clearing browser data if you want to keep your records.
-
-### Optional debug APK
-
-A debug-signed APK is available for Android testing. Open **Pengaturan → Aplikasi Android** in the app and tap **Unduh APK Android**, or download [`downloads/Catatan-Keuangan-debug-1.0.0.apk`](downloads/Catatan-Keuangan-debug-1.0.0.apk) directly.
-
-The APK is a Trusted Web Activity wrapper around the live application. It requires Chrome and an internet connection on the first launch. Because it is a debug build, use it for testing only; installing a future release build will require uninstalling it first. The PWA installation above remains the recommended option for everyday use.
+Long-press the app icon and choose **Uninstall**, or open **App info** and select **Uninstall**. Export a JSON backup before uninstalling if you want to keep your records.
 
 ## Usage Guide
 
@@ -311,6 +305,8 @@ Pencatat Keuangan/
 │   ├── icon-192.png                   # Standard PWA icon
 │   ├── icon-512.png                   # High-resolution PWA icon
 │   └── icon-maskable-512.png          # Android maskable icon
+├── downloads/
+│   └── Catatan-Keuangan-debug-1.0.0.apk  # Debug-signed Android APK
 ├── tests/
 │   └── logic.test.mjs                 # Node.js unit tests
 ├── docs/
@@ -374,7 +370,7 @@ No package installation is required.
 | Resource | Link |
 |---|---|
 | Live application | [winduathallahahmad-09.github.io/Pencatat-Keuangan-Pribadi](https://winduathallahahmad-09.github.io/Pencatat-Keuangan-Pribadi/) |
-| Android installation guide | [Annotated Chrome menu screenshot](docs/screenshots/android-install-guide.png) |
+| Android installation guide | [Annotated APK download screenshot](docs/screenshots/apk-download-guide.png) |
 | GitHub repository | [WinduAthallahAhmad-09/Pencatat-Keuangan-Pribadi](https://github.com/WinduAthallahAhmad-09/Pencatat-Keuangan-Pribadi) |
 | Design specification | [Spendo layout and legacy purple theme](docs/superpowers/specs/2026-11-05-spendo-layout-legacy-theme-design.md) |
 | Implementation plan | [Spendo layout implementation](docs/superpowers/plans/2026-11-05-spendo-layout-legacy-theme.md) |
@@ -387,12 +383,12 @@ No package installation is required.
 
 ## Troubleshooting
 
-### The install option does not appear in Chrome
+### The APK does not install
 
-- Make sure the app is opened in normal Chrome, not Incognito mode.
-- Reload the page while connected to the internet.
-- Open the Chrome menu and look for **Install app** or **Add to Home screen**.
-- Update Chrome if the option is still unavailable.
+- Allow **Install unknown apps** for Chrome or the file manager in Android settings.
+- If Play Protect shows a warning, choose **Install anyway**. The APK uses a debug signature.
+- Check that the phone has enough free storage.
+- If the download is incomplete, delete the file and download it again.
 
 ### The installed app still shows an older version
 
