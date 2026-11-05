@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#F6F3EA" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0E0E0C" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FBF4E4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B0A1F" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -17,69 +17,69 @@
 <style>
 /* Vanilla (terang) dan Cosmic (gelap) */
 :root {
-  --bg: #F6F3EA;
-  --surface: #EFEBE0;
+  --bg: #FBF4E4;
+  --surface: rgba(91, 63, 209, 0.07);
   --card: #FFFFFF;
-  --field: #F6F3EA;
-  --edge: #E7E2D5;
-  --hi: rgba(255, 255, 255, 0.9);
-  --line: #EEEAE0;
-  --text: #16150F;
-  --muted: #726E5F;
-  --accent: #141414;
+  --field: rgba(255, 255, 255, 0.72);
+  --edge: rgba(91, 63, 209, 0.16);
+  --hi: rgba(255, 255, 255, 0.95);
+  --line: rgba(60, 40, 120, 0.12);
+  --text: #1E1638;
+  --muted: #655C82;
+  --accent: #5B3FD1;
   --accent-ink: #FFFFFF;
-  --accent-glow: rgba(20, 20, 20, 0.18);
-  --income: #1B7F4B;
-  --expense: #C03A2B;
+  --accent-glow: rgba(91, 63, 209, 0.42);
+  --income: #15773A;
+  --expense: #B4232C;
   --glass: #FFFFFF;
   --glass-strong: #FFFFFF;
-  --glass-shadow: 0 18px 40px rgba(35, 30, 10, 0.1), 0 2px 8px rgba(35, 30, 10, 0.05);
-  --lens: #141414;
-  --lens-shadow: 0 6px 16px rgba(20, 20, 20, 0.18);
+  --glass-shadow: 0 14px 34px rgba(50, 35, 120, 0.16), 0 2px 8px rgba(50, 35, 120, 0.08);
+  --lens: #5B3FD1;
+  --lens-shadow: 0 5px 16px rgba(91, 63, 209, 0.22);
   --lens-ink: #FFFFFF;
-  --sheen: rgba(214, 242, 107, 0.4);
-  --glow-1: rgba(214, 242, 107, 0.16);
-  --glow-2: rgba(255, 214, 153, 0.12);
-  --glow-3: rgba(198, 235, 210, 0.1);
-  --scrim: rgba(22, 21, 15, 0.45);
+  --sheen: rgba(255, 255, 255, 0.4);
+  --glow-1: rgba(167, 139, 250, 0.32);
+  --glow-2: rgba(255, 205, 140, 0.5);
+  --glow-3: rgba(120, 140, 255, 0.2);
+  --scrim: rgba(30, 22, 56, 0.4);
   --stars: 0;
-  --chip-active: #141414;
+  --chip-active: #5B3FD1;
   --chip-active-ink: #FFFFFF;
-  --fab-bg: #141414;
-  --fab-ink: #FFFFFF;
+  --nav-bg: #1E1638;
+  --nav-ink: #F7EFD9;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0E0E0C;
-    --surface: #1A1A17;
-    --card: #191916;
-    --field: #22221E;
-    --edge: #2E2E28;
-    --hi: rgba(255, 255, 255, 0.12);
-    --line: #2A2A25;
-    --text: #F5F1E6;
-    --muted: #A29C8C;
-    --accent: #D6F26B;
-    --accent-ink: #111111;
-    --accent-glow: rgba(214, 242, 107, 0.28);
-    --income: #7BE3A4;
-    --expense: #FF9C93;
-    --glass: #191916;
-    --glass-strong: #191916;
-    --glass-shadow: 0 18px 44px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.4);
-    --lens: #D6F26B;
-    --lens-shadow: 0 6px 18px rgba(214, 242, 107, 0.25);
-    --lens-ink: #111111;
-    --sheen: rgba(214, 242, 107, 0.3);
-    --glow-1: rgba(214, 242, 107, 0.16);
-    --glow-2: rgba(255, 180, 120, 0.1);
-    --glow-3: rgba(120, 220, 180, 0.1);
-    --scrim: rgba(0, 0, 0, 0.65);
+    --bg: #0B0A1F;
+    --surface: rgba(255, 255, 255, 0.07);
+    --card: #1B1740;
+    --field: rgba(255, 255, 255, 0.08);
+    --edge: rgba(255, 255, 255, 0.14);
+    --hi: rgba(255, 255, 255, 0.22);
+    --line: rgba(255, 255, 255, 0.1);
+    --text: #F7EFD9;
+    --muted: #A9A2CB;
+    --accent: #A78BFA;
+    --accent-ink: #140F33;
+    --accent-glow: rgba(167, 139, 250, 0.45);
+    --income: #6EE7A8;
+    --expense: #FF8FA3;
+    --glass: #1B1740;
+    --glass-strong: #1B1740;
+    --glass-shadow: 0 16px 38px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.4);
+    --lens: #A78BFA;
+    --lens-shadow: 0 5px 18px rgba(167, 139, 250, 0.3);
+    --lens-ink: #140F33;
+    --sheen: rgba(196, 176, 255, 0.24);
+    --glow-1: rgba(124, 92, 255, 0.4);
+    --glow-2: rgba(56, 84, 210, 0.3);
+    --glow-3: rgba(190, 84, 210, 0.24);
+    --scrim: rgba(0, 0, 0, 0.6);
     --stars: 0;
-    --chip-active: #D6F26B;
-    --chip-active-ink: #111111;
-    --fab-bg: #D6F26B;
-    --fab-ink: #111111;
+    --chip-active: #A78BFA;
+    --chip-active-ink: #140F33;
+    --nav-bg: #151130;
+    --nav-ink: #F7EFD9;
   }
 }
 
@@ -125,22 +125,19 @@ svg.ic { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-wid
 /* Rangka aplikasi */
 #shell { position: fixed; inset: 0; max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; }
 .top {
-  flex: none; display: flex; align-items: center; justify-content: space-between;
-  padding: calc(env(safe-area-inset-top, 0px) + 10px) 14px 6px;
+  flex: none; display: grid; grid-template-columns: 1fr auto 1fr; align-items: baseline;
+  padding: calc(env(safe-area-inset-top, 0px) + 14px) 8px 4px;
 }
-.icon-btn {
-  width: 44px; height: 44px; border: 0; background: transparent;
-  display: grid; place-items: center; border-radius: 50%; color: var(--text);
-  transition: background 0.2s, transform 0.2s;
-}
-.icon-btn:active { background: var(--surface); transform: scale(0.92); }
-.month { border: 0; background: transparent; font-size: 17px; font-weight: 650; padding: 10px 14px; border-radius: 14px; transition: background 0.2s; }
-.month:active { background: var(--surface); }
+.month-side { border: 0; background: transparent; color: var(--muted); opacity: 0.6; font-size: 22px; font-weight: 500; padding: 8px; white-space: nowrap; overflow: hidden; }
+.month-side.next { text-align: left; }
+.month-side.prev { text-align: right; }
+.month-big { border: 0; background: transparent; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; padding: 8px 4px; }
+.month-big span { font-size: 15px; font-weight: 500; color: var(--muted); margin-left: 6px; }
 
 #viewport { position: relative; flex: 1; min-height: 0; overflow: hidden; touch-action: pan-y; }
-#track { display: flex; width: 300%; height: 100%; will-change: transform; }
+#track { display: flex; width: 400%; height: 100%; will-change: transform; }
 .pane {
-  flex: 0 0 33.3333333%; min-width: 0; height: 100%;
+  flex: 0 0 25%; min-width: 0; height: 100%;
   overflow-x: hidden; overflow-y: auto; overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch; scrollbar-width: none;
   -webkit-user-select: none; user-select: none;
@@ -191,7 +188,7 @@ svg.ic { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-wid
 .day { display: flex; justify-content: space-between; align-items: baseline; margin-top: 20px; padding-bottom: 2px; border-bottom: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.02em; color: var(--muted); }
 .row {
   width: 100%; border: 0; background: transparent; text-align: left;
-  display: grid; grid-template-columns: 10px 1fr auto; gap: 12px; align-items: center;
+  display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center;
   padding: 14px 0; min-height: 60px; border-bottom: 1px solid var(--line); transition: background 0.2s;
 }
 .row:active { background: var(--surface); }
@@ -228,6 +225,48 @@ svg.ic { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-wid
 .stat .v { font-weight: 600; text-align: right; }
 h2 { font-size: 17px; font-weight: 700; }
 
+.cat-ic { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; color: #FFFFFF; flex: none; }
+.cat-ic .ic { width: 20px; height: 20px; }
+.row .cat-ic { width: 34px; height: 34px; }
+.row .cat-ic .ic { width: 17px; height: 17px; }
+.donut { width: 250px; height: 250px; }
+.donut-pct { position: absolute; transform: translate(-50%, -50%); font-size: 11px; font-weight: 600; color: var(--muted); background: var(--card); border-radius: 999px; padding: 1px 6px; }
+.tip { display: flex; gap: 12px; align-items: center; background: rgba(91, 63, 209, 0.1); border: 1px solid var(--edge); border-radius: 20px; padding: 14px 16px; margin-top: 14px; font-size: 14px; }
+.tip .cat-ic { background: var(--accent); width: 32px; height: 32px; }
+.cat-card { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 14px 16px; background: var(--card); border: 1px solid var(--edge); border-radius: 22px; margin-top: 10px; }
+.cat-card .mid { flex: 1; min-width: 0; }
+.cat-card .name { font-weight: 600; }
+.cat-card .last { font-size: 12px; color: var(--muted); }
+.cat-card .amt { font-weight: 700; }
+.cat-card .bar { flex-basis: 100%; margin-left: 0; }
+.cat-card .budget-note { flex-basis: 100%; margin-left: 0; }
+
+/* Kalender */
+.cal-card { padding: 14px 12px; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.cal-dow { text-align: center; font-size: 11px; font-weight: 600; color: var(--muted); padding: 6px 0; text-transform: uppercase; }
+.cal-cell {
+  border: 0; background: transparent; aspect-ratio: 1; border-radius: 50%;
+  display: grid; place-content: center; justify-items: center; gap: 3px;
+  color: var(--text); min-height: 40px;
+}
+.cal-cell.out { pointer-events: none; }
+.cal-cell.today .cal-num { font-weight: 700; color: var(--accent); }
+.cal-cell.sel { background: var(--accent); color: var(--accent-ink); }
+.cal-cell.sel .cal-num { color: var(--accent-ink); font-weight: 700; }
+.cal-num { font-size: 14px; line-height: 1; }
+.cal-dots { display: flex; gap: 2px; height: 4px; }
+.cal-dots i { width: 4px; height: 4px; border-radius: 50%; }
+.cal-day-list { margin-top: 14px; }
+.cal-day-list .day { margin-top: 10px; }
+.cal-total { margin-top: 14px; padding-bottom: 14px; }
+.cal-total .day { margin-top: 10px; color: var(--text); }
+.stack { display: flex; height: 10px; border-radius: 999px; overflow: hidden; margin: 10px 18px 0; }
+.stack i { display: block; height: 100%; }
+.stack-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 10px 18px 0; font-size: 12px; color: var(--muted); }
+.stack-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.stack-legend i { width: 8px; height: 8px; border-radius: 50%; }
+
 /* Pengaturan */
 .section { margin-top: 26px; }
 .section p.muted { font-size: 14px; margin-top: 2px; }
@@ -255,19 +294,19 @@ h2 { font-size: 17px; font-weight: 700; }
 .nav {
   position: fixed; z-index: 20; left: 50%; transform: translateX(-50%);
   bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-  width: min(calc(100% - 32px), 420px); height: 66px; padding: 6px;
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  border-radius: 999px; border: 1px solid var(--edge);
-  background: var(--glass);
+  width: min(calc(100% - 32px), 420px); height: 70px; padding: 6px;
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  border-radius: 999px; border: 1px solid transparent;
+  background: var(--nav-bg); color: var(--nav-ink);
   box-shadow: var(--glass-shadow);
 }
 .tab {
-  position: relative; z-index: 1; border: 0; background: transparent; color: var(--muted);
-  display: grid; justify-items: center; align-content: center; gap: 2px; font-size: 12px;
-  border-radius: 999px; transition: color 0.3s;
+  position: relative; z-index: 1; border: 0; background: transparent; color: var(--nav-ink); opacity: 0.65;
+  display: grid; justify-items: center; align-content: center; gap: 2px; font-size: 11px;
+  border-radius: 999px; transition: color 0.3s, opacity 0.3s;
 }
-.tab[aria-current="page"] { color: var(--lens-ink); font-weight: 650; }
-.lens { position: absolute; z-index: 0; left: 6px; top: 6px; bottom: 6px; width: calc((100% - 12px) / 3); pointer-events: none; will-change: transform; }
+.tab[aria-current="page"] { color: var(--lens-ink); font-weight: 650; opacity: 1; }
+.lens { position: absolute; z-index: 0; left: 6px; top: 6px; bottom: 6px; width: calc((100% - 12px) / 5); pointer-events: none; will-change: transform; }
 .blob {
   position: absolute; inset: 0; border-radius: 999px; background: var(--lens);
   border: 0;
@@ -279,17 +318,13 @@ h2 { font-size: 17px; font-weight: 700; }
   box-shadow: 0 10px 26px var(--accent-glow);
 }
 
-.fab {
-  position: fixed; z-index: 21; width: 58px; height: 58px; display: grid; place-items: center; border-radius: 50%;
-  right: calc(50vw - min(50vw - 16px, 210px));
-  bottom: calc(12px + 66px + 14px + env(safe-area-inset-bottom, 0px));
-  color: var(--fab-ink); border: 0;
-  background: var(--fab-bg);
-  box-shadow: 0 12px 26px var(--accent-glow);
-  transition: transform 0.25s cubic-bezier(0.34, 1.4, 0.5, 1);
+.nav-plus {
+  width: 54px; height: 54px; place-self: center; border: 0; border-radius: 50%;
+  background: linear-gradient(135deg, #A78BFA, #5B3FD1); color: #FFFFFF;
+  display: grid; place-items: center; transform: translateY(-14px);
+  box-shadow: 0 10px 24px var(--accent-glow);
 }
-.fab svg.ic { width: 26px; height: 26px; stroke-width: 2.2; }
-.fab:active { transform: scale(0.9); }
+.nav-plus:active { transform: translateY(-14px) scale(0.92); }
 
 /* Sheet kaca melayang */
 .scrim { position: fixed; inset: 0; background: var(--scrim); z-index: 30; animation: fade 0.25s ease-out; }
@@ -338,8 +373,9 @@ h2 { font-size: 17px; font-weight: 700; }
   <header class="top" id="top"></header>
   <div id="viewport">
     <div id="track">
+      <section class="pane" aria-label="Home"><div class="inner"></div></section>
       <section class="pane" aria-label="Transaksi"><div class="inner"></div></section>
-      <section class="pane" aria-label="Ringkasan"><div class="inner"></div></section>
+      <section class="pane" aria-label="Kalender"><div class="inner"></div></section>
       <section class="pane" aria-label="Pengaturan"><div class="inner"></div></section>
     </div>
     <div id="ripple" aria-hidden="true"></div>
@@ -376,10 +412,12 @@ const CONFIG = {
   }
 }
 const PAGES = [
-  { id: 'home', label: 'Transaksi', icon: 'list' },
-  { id: 'summary', label: 'Ringkasan', icon: 'pie' },
+  { id: 'home', label: 'Home', icon: 'home' },
+  { id: 'list', label: 'Transaksi', icon: 'list' },
+  { id: 'calendar', label: 'Kalender', icon: 'calendar' },
   { id: 'settings', label: 'Pengaturan', icon: 'sliders' }
 ]
+const NAV_COLUMNS = [0, 1, 3, 4]
 const EASE_OUT = 'cubic-bezier(0.22, 1, 0.36, 1)'
 const EASE_SPRING = 'cubic-bezier(0.34, 1.36, 0.5, 1)'
 
@@ -391,6 +429,12 @@ const signed = n => (n < 0 ? '\u2212' : n > 0 ? '+' : '') + fmt(Math.abs(n))
 const pad = n => String(n).padStart(2, '0')
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7)
 const clamp = (n, a, b) => Math.min(b, Math.max(a, n))
+function navLensOffset(p) {
+  const i = clamp(Math.floor(p), 0, PAGES.length - 1)
+  const j = clamp(i + 1, 0, PAGES.length - 1)
+  const t = clamp(p - i, 0, 1)
+  return (NAV_COLUMNS[i] + (NAV_COLUMNS[j] - NAV_COLUMNS[i]) * t) * 100
+}
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/
 const reduceMotion = () => !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)
 
@@ -409,6 +453,19 @@ function dayLabel(str) {
 function daysInMonth(key) {
   const [y, m] = key.split('-').map(Number)
   return new Date(y, m, 0).getDate()
+}
+function calendarCells(key) {
+  const [y, m] = key.split('-').map(Number)
+  const lead = (new Date(y, m - 1, 1).getDay() + 6) % 7
+  const total = daysInMonth(key)
+  const cells = []
+  for (let i = 0; i < 42; i++) {
+    const day = i - lead + 1
+    cells.push(day >= 1 && day <= total
+      ? { date: key + '-' + pad(day), inMonth: true }
+      : { date: '', inMonth: false })
+  }
+  return cells
 }
 function shiftMonthKey(key, delta) {
   const [y, m] = key.split('-').map(Number)
@@ -440,9 +497,20 @@ function h(tag, props = {}, ...kids) {
 }
 
 const ICONS = {
+  home: '<path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/>',
+  calendar: '<rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M8 3v4M16 3v4"/>',
   list: '<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>',
   pie: '<path d="M12 3v9h9"/><path d="M20.5 15.5A9 9 0 1 1 8.5 3.5"/>',
   sliders: '<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>',
+  food: '<path d="M7 3v7a2 2 0 0 0 4 0V3M9 3v18M17 3c-2 2-2 6 0 8v10"/>',
+  car: '<path d="M5 16l1.5-6h11L19 16"/><rect x="4" y="16" width="16" height="4" rx="1"/><circle cx="8" cy="20" r="1"/><circle cx="16" cy="20" r="1"/>',
+  book: '<path d="M5 4h6v16H5zM13 4h6v16h-6z"/>',
+  bag: '<path d="M5 8h14l-1 12H6z"/><path d="M9 8a3 3 0 0 1 6 0"/>',
+  receipt: '<path d="M6 3h12v18l-2-1.5L14 21l-2-1.5L10 21l-2-1.5L6 21z"/><path d="M9 8h6M9 12h6"/>',
+  play: '<circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4z"/>',
+  health: '<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/>',
+  wallet: '<rect x="3" y="6" width="18" height="14" rx="3"/><path d="M3 10h18M16 15h2"/>',
+  dots: '<circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/>',
   plus: '<path d="M12 5v14M5 12h14"/>',
   prev: '<path d="M15 6l-6 6 6 6"/>',
   next: '<path d="M9 6l6 6-6 6"/>'
@@ -501,10 +569,11 @@ function persist() {
 
 const state = {
   data: load(),
-  index: 0,      // halaman tujuan (0..2)
-  p: 0,          // posisi geser kontinu (0..2)
+  index: 0,      // halaman tujuan (0..3)
+  p: 0,          // posisi geser kontinu (0..3)
   month: todayStr().slice(0, 7),
-  filter: 'all'
+  filter: 'all',
+  selectedDate: null
 }
 
 const monthTx = () => state.data.transactions
@@ -521,19 +590,26 @@ const panes = [...track.children].map(el => ({ el, inner: el.firstElementChild }
 
 const blob = h('div', { class: 'blob' })
 const lens = h('div', { class: 'lens', 'aria-hidden': 'true' }, blob)
-const tabs = PAGES.map((pg, i) => h('button', { class: 'tab', onclick: () => goTo(i) }, icon(pg.icon), pg.label))
-const navEl = h('nav', { class: 'nav', 'aria-label': 'Menu utama' }, lens, ...tabs)
-const fab = h('button', { class: 'fab', 'aria-label': 'Tambah transaksi', onclick: () => openSheet(null) }, icon('plus'))
-document.body.append(navEl, fab)
+const tabs = PAGES.map((pg, i) => h('button', {
+  class: 'tab', style: 'grid-column:' + (NAV_COLUMNS[i] + 1) + ';grid-row:1',
+  onclick: () => goTo(i)
+}, icon(pg.icon), pg.label))
+const addBtn = h('button', {
+  class: 'nav-plus', style: 'grid-column:3;grid-row:1',
+  'aria-label': 'Tambah transaksi', onclick: () => openSheet(null)
+}, icon('plus'))
+const navEl = h('nav', { class: 'nav', 'aria-label': 'Menu utama' }, lens, ...tabs, addBtn)
+document.body.append(navEl)
 
-const views = [() => viewHome(), () => viewSummary(), () => viewSettings()]
+const views = [() => viewHome(), () => viewTransactions(), () => viewCalendar(), () => viewSettings()]
 function renderPane(i) { panes[i].inner.replaceChildren(views[i]()) }
 
 function renderHeader() {
+  const label = monthLabel(state.month).split(' ')
   topEl.replaceChildren(
-    h('button', { class: 'icon-btn', 'aria-label': 'Bulan sebelumnya', onclick: () => shiftMonth(-1) }, icon('prev')),
-    h('button', { class: 'month', 'aria-label': 'Kembali ke bulan ini', onclick: goToCurrentMonth }, monthLabel(state.month)),
-    h('button', { class: 'icon-btn', 'aria-label': 'Bulan berikutnya', onclick: () => shiftMonth(1) }, icon('next'))
+    h('button', { class: 'month-side prev', 'aria-label': 'Bulan sebelumnya', onclick: () => shiftMonth(-1) }, monthLabel(shiftMonthKey(state.month, -1)).split(' ')[0]),
+    h('button', { class: 'month-big', 'aria-label': 'Kembali ke bulan ini', onclick: goToCurrentMonth }, label[0], h('span', {}, label[1])),
+    h('button', { class: 'month-side next', 'aria-label': 'Bulan berikutnya', onclick: () => shiftMonth(1) }, monthLabel(shiftMonthKey(state.month, 1)).split(' ')[0])
   )
 }
 
@@ -544,6 +620,7 @@ function renderAll() {
 
 function shiftMonth(dir) {
   state.month = shiftMonthKey(state.month, dir)
+  state.selectedDate = null
   renderAll()
   animateContent(dir)
 }
@@ -552,6 +629,7 @@ function goToCurrentMonth() {
   if (state.month === now) return
   const dir = now > state.month ? 1 : -1
   state.month = now
+  state.selectedDate = null
   renderAll()
   animateContent(dir)
 }
@@ -574,15 +652,12 @@ let settleTimer = 0
 function setProgress(p) {
   state.p = p
   track.style.transform = 'translate3d(' + (-p * 100 / PAGES.length) + '%,0,0)'
-  lens.style.transform = 'translate3d(' + (p * 100) + '%,0,0)'
+  lens.style.transform = 'translate3d(' + navLensOffset(p) + '%,0,0)'
   panes.forEach((pane, i) => {
     const off = i - p
     pane.el.style.opacity = String(1 - 0.45 * Math.min(1, Math.abs(off)))
     pane.inner.style.transform = 'translate3d(' + (-off * 30) + 'px,0,0)'
   })
-  const fabO = clamp(2 - p, 0, 1)
-  fab.style.opacity = String(fabO)
-  fab.style.pointerEvents = fabO < 0.4 ? 'none' : 'auto'
   const near = clamp(Math.round(p), 0, PAGES.length - 1)
   tabs.forEach((t, i) => {
     if (i === near) t.setAttribute('aria-current', 'page')
@@ -593,7 +668,6 @@ function setProgress(p) {
 function setTransitions(on) {
   track.style.transition = on ? 'transform 520ms ' + EASE_OUT : 'none'
   lens.style.transition = on ? 'transform 640ms ' + EASE_SPRING : 'none'
-  fab.style.transition = on ? 'opacity 320ms ease, transform 0.25s cubic-bezier(0.34, 1.4, 0.5, 1)' : 'none'
   panes.forEach(p => {
     p.el.style.transition = on ? 'opacity 520ms ease' : 'none'
     p.inner.style.transition = on ? 'transform 520ms ' + EASE_OUT : 'none'
@@ -613,7 +687,6 @@ function finishSettle() {
   lens.classList.remove('lifted')
   blob.style.transform = ''
   ripple.style.opacity = '0'
-  fab.style.transition = ''
 }
 
 function pulseBlob() {
@@ -751,7 +824,7 @@ function empty(title, hint) {
   return h('div', { class: 'empty' }, h('p', { class: 'empty-t' }, title), h('p', { class: 'muted' }, hint))
 }
 
-function viewHome() {
+function viewTransactions() {
   const all = monthTx()
   const income = sum(all, 'income')
   const expense = sum(all, 'expense')
@@ -765,7 +838,7 @@ function viewHome() {
 
   const filters = h('div', { class: 'seg filters', role: 'group', 'aria-label': 'Filter transaksi' },
     ...[['all', 'Semua'], ['income', 'Masuk'], ['expense', 'Keluar']].map(([id, label]) =>
-      h('button', { 'aria-pressed': String(state.filter === id), onclick: () => { state.filter = id; renderPane(0) } }, label))
+      h('button', { 'aria-pressed': String(state.filter === id), onclick: () => { state.filter = id; renderPane(1) } }, label))
   )
 
   const list = h('div', { class: 'list' })
@@ -782,7 +855,7 @@ function viewHome() {
       items.forEach(t => {
         const cat = catOf(t.type, t.category)
         list.append(h('button', { class: 'row', onclick: () => openSheet(t) },
-          h('span', { class: 'dot', style: 'background:' + cat.color }),
+          catIcon(cat),
           h('span', { class: 'mid' }, h('div', { class: 'name' }, cat.name), t.note ? h('div', { class: 'note' }, t.note) : null),
           h('span', { class: 'amt ' + (t.type === 'income' ? 'pos' : 'neg') }, (t.type === 'income' ? '+' : '\u2212') + fmt(t.amount))
         ))
@@ -820,41 +893,83 @@ function donutSvg(items, total) {
   return '<svg viewBox="0 0 160 160" role="img" aria-label="Diagram pengeluaran per kategori"><g transform="rotate(-90 80 80)"><circle cx="80" cy="80" r="' + r + '" fill="none" stroke="var(--line)" stroke-width="20"/>' + segs + '</g></svg>'
 }
 
-function viewSummary() {
+function tipMessage({ over, top }) {
+  if (over) return 'Pengeluaran ' + over.name + ' melebihi anggaran. Cek lagi pos ini bulan ini.'
+  if (top) return 'Kategori terbesar bulan ini: ' + top.name + ' (' + top.pct + '%). Masih sesuai rencana?'
+  return 'Belum ada pengeluaran. Tekan + untuk mencatat dan mulai pantau bulan ini.'
+}
+
+function donutLabels(items, total) {
+  let angle = -Math.PI / 2
+  return items.map(it => {
+    const frac = it.value / total
+    const mid = angle + frac * Math.PI
+    angle += frac * 2 * Math.PI
+    return { id: it.cat.id, pct: Math.round(frac * 100), x: 80 + Math.cos(mid) * 78, y: 80 + Math.sin(mid) * 78 }
+  }).filter(l => l.pct >= 4)
+}
+
+const CAT_ICONS = {
+  makan: 'food', transport: 'car', kuliah: 'book', belanja: 'bag',
+  tagihan: 'receipt', hiburan: 'play', kesehatan: 'health',
+  'uang-saku': 'wallet', gaji: 'wallet', beasiswa: 'wallet', freelance: 'wallet'
+}
+
+function catIcon(cat) {
+  return h('span', { class: 'cat-ic', style: 'background:' + cat.color, 'aria-hidden': 'true' }, icon(CAT_ICONS[cat.id] || 'dots'))
+}
+
+function viewHome() {
   const all = monthTx()
   const exp = all.filter(t => t.type === 'expense')
   const income = sum(all, 'income')
   const total = sum(exp)
-  if (!total) return h('div', {}, empty('Belum ada pengeluaran bulan ini', 'Catat pengeluaran dengan tombol + agar ringkasan muncul di sini.'))
+  if (!total) {
+    return h('div', {},
+      h('div', { class: 'tip' }, h('span', { class: 'cat-ic', 'aria-hidden': 'true' }, icon('plus')), h('span', {}, tipMessage({ over: null, top: null }))),
+      h('div', { class: 'list' }, empty('Belum ada pengeluaran bulan ini', 'Catat pengeluaran dengan tombol + agar ringkasan muncul di sini.'))
+    )
+  }
 
   const byCat = new Map()
   exp.forEach(t => {
     const cat = catOf('expense', t.category)
-    byCat.set(cat.id, { cat, value: (byCat.get(cat.id)?.value || 0) + t.amount })
+    const prev = byCat.get(cat.id)
+    byCat.set(cat.id, {
+      cat,
+      value: (prev?.value || 0) + t.amount,
+      last: !prev || t.date > prev.last ? t.date : prev.last
+    })
   })
   const items = [...byCat.values()].sort((a, b) => b.value - a.value)
 
-  const donut = h('div', { class: 'donut' }, h('div', { class: 'mid' }, h('div', { class: 'k' }, 'Total keluar'), h('div', { class: 'v' }, fmt(total))))
+  const donut = h('div', { class: 'donut' }, h('div', { class: 'mid' },
+    h('div', { class: 'k' }, 'Total keluar'), h('div', { class: 'v' }, fmt(total))))
   donut.insertAdjacentHTML('afterbegin', donutSvg(items, total))
+  donutLabels(items, total).forEach(l => {
+    donut.append(h('span', { class: 'donut-pct', style: 'left:' + (l.x / 160 * 100) + '%;top:' + (l.y / 160 * 100) + '%' }, l.pct + '%'))
+  })
 
-  const rows = items.map(({ cat, value }) => {
-    const budget = state.data.budgets[cat.id]
-    const pct = Math.round(value / total * 100)
-    const row = h('div', { class: 'cat' },
-      h('div', { class: 'head' },
-        h('span', { class: 'dot', style: 'background:' + cat.color }),
-        h('span', {}, cat.name, h('span', { class: 'pct' }, pct + '%')),
-        h('strong', {}, fmt(value))
-      )
+  const over = items.find(it => state.data.budgets[it.cat.id] && it.value > state.data.budgets[it.cat.id])
+  const tip = h('div', { class: 'tip' },
+    h('span', { class: 'cat-ic', 'aria-hidden': 'true' }, icon('wallet')),
+    h('span', {}, tipMessage({ over: over ? { name: over.cat.name } : null, top: { name: items[0].cat.name, pct: Math.round(items[0].value / total * 100) } }))
+  )
+
+  const cards = items.map(it => {
+    const budget = state.data.budgets[it.cat.id]
+    const card = h('div', { class: 'cat-card' },
+      catIcon(it.cat),
+      h('div', { class: 'mid' }, h('div', { class: 'name' }, it.cat.name), h('div', { class: 'last' }, dayLabel(it.last))),
+      h('span', { class: 'amt' }, fmt(it.value))
     )
     if (budget) {
-      const over = value > budget
-      row.append(
-        h('div', { class: 'bar' + (over ? ' over' : ''), role: 'img', 'aria-label': 'Terpakai ' + Math.round(value / budget * 100) + '% dari anggaran' }, h('i', { style: 'width:' + Math.min(100, value / budget * 100) + '%' })),
-        h('div', { class: 'budget-note' }, over ? 'Melebihi anggaran ' + fmt(value - budget) : 'Sisa ' + fmt(budget - value) + ' dari anggaran ' + fmt(budget))
-      )
+      const overBudget = it.value > budget
+      card.append(h('div', { class: 'bar' + (overBudget ? ' over' : ''), role: 'img', 'aria-label': 'Terpakai ' + Math.round(it.value / budget * 100) + '% dari anggaran' },
+        h('i', { style: 'width:' + Math.min(100, it.value / budget * 100) + '%' })))
+      card.append(h('div', { class: 'budget-note' }, overBudget ? 'Melebihi anggaran ' + fmt(it.value - budget) : 'Sisa ' + fmt(budget - it.value)))
     }
-    return row
+    return card
   })
 
   const isCurrent = state.month === todayStr().slice(0, 7)
@@ -865,13 +980,92 @@ function viewSummary() {
 
   return h('div', {},
     donut,
-    h('div', { class: 'cat-list' }, rows),
+    tip,
+    h('div', {}, cards),
     h('section', { class: 'stats' },
       h('h2', {}, 'Gambaran bulan ini'),
       stat('Rata-rata keluar per hari', fmt(Math.round(total / days))),
       stat('Pengeluaran terbesar', fmt(biggest.amount) + ' (' + catOf('expense', biggest.category).name + ')'),
       stat('Sisa dari pemasukan', saved)
     )
+  )
+}
+
+/* ---------- Halaman: Kalender ---------- */
+function viewCalendar() {
+  const all = monthTx()
+  const exp = all.filter(t => t.type === 'expense')
+  const total = sum(exp)
+  const byDate = new Map()
+  all.forEach(t => {
+    if (!byDate.has(t.date)) byDate.set(t.date, [])
+    byDate.get(t.date).push(t)
+  })
+
+  const fallback = state.month === todayStr().slice(0, 7) ? todayStr() : state.month + '-01'
+  const selected = state.selectedDate && state.selectedDate.startsWith(state.month) ? state.selectedDate : fallback
+
+  const grid = h('div', { class: 'cal-grid', role: 'group', 'aria-label': 'Kalender ' + monthLabel(state.month) },
+    ...['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'].map(d => h('span', { class: 'cal-dow' }, d))
+  )
+  calendarCells(state.month).forEach(cell => {
+    if (!cell.inMonth) {
+      grid.append(h('span', { class: 'cal-cell out', 'aria-hidden': 'true' }))
+      return
+    }
+    const items = byDate.get(cell.date) || []
+    const cats = [...new Set(items.filter(t => t.type === 'expense').map(t => t.category))].slice(0, 3)
+    grid.append(h('button', {
+      class: 'cal-cell' + (cell.date === selected ? ' sel' : '') + (cell.date === todayStr() ? ' today' : ''),
+      'aria-pressed': String(cell.date === selected),
+      'aria-label': dayLabel(cell.date) + ', ' + items.length + ' transaksi',
+      onclick: () => { state.selectedDate = cell.date; renderPane(2) }
+    },
+      h('span', { class: 'cal-num' }, Number(cell.date.slice(8))),
+      h('span', { class: 'cal-dots' }, ...cats.map(id => h('i', { style: 'background:' + catOf('expense', id).color })))
+    ))
+  })
+
+  const dayItems = (byDate.get(selected) || []).slice().sort((a, b) => b.created - a.created)
+  const dayList = h('div', { class: 'list cal-day-list' },
+    h('div', { class: 'day' }, h('span', {}, dayLabel(selected)), h('span', {}, dayItems.length + ' transaksi'))
+  )
+  if (!dayItems.length) {
+    dayList.append(empty('Tidak ada transaksi', 'Pilih tanggal lain atau catat dengan tombol +.'))
+  } else {
+    dayItems.forEach(t => {
+      const cat = catOf(t.type, t.category)
+      dayList.append(h('button', { class: 'row', onclick: () => openSheet(t) },
+        catIcon(cat),
+        h('span', { class: 'mid' }, h('div', { class: 'name' }, cat.name), t.note ? h('div', { class: 'note' }, t.note) : null),
+        h('span', { class: 'amt ' + (t.type === 'income' ? 'pos' : 'neg') }, (t.type === 'income' ? '+' : '−') + fmt(t.amount))
+      ))
+    })
+  }
+
+  const byCat = new Map()
+  exp.forEach(t => {
+    const cat = catOf('expense', t.category)
+    byCat.set(cat.id, { cat, value: (byCat.get(cat.id)?.value || 0) + t.amount })
+  })
+  const items = [...byCat.values()].sort((a, b) => b.value - a.value)
+
+  const totalCard = h('div', { class: 'card cal-total' },
+    h('div', { class: 'day' }, h('span', {}, 'Total pengeluaran'), h('strong', {}, fmt(total)))
+  )
+  if (total) {
+    totalCard.append(
+      h('div', { class: 'stack', role: 'img', 'aria-label': 'Komposisi pengeluaran per kategori' },
+        ...items.map(it => h('i', { style: 'width:' + (it.value / total * 100) + '%;background:' + it.cat.color, title: it.cat.name }))),
+      h('div', { class: 'stack-legend' },
+        ...items.map(it => h('span', {}, h('i', { style: 'background:' + it.cat.color }), it.cat.name + ' ' + fmt(it.value))))
+    )
+  }
+
+  return h('div', {},
+    h('div', { class: 'card cal-card' }, grid),
+    dayList,
+    totalCard
   )
 }
 
@@ -893,7 +1087,7 @@ function viewSettings() {
           if (n > 0) state.data.budgets[cat.id] = n
           else delete state.data.budgets[cat.id]
           persist()
-          renderPane(1)
+          renderPane(0)
           toast('Anggaran disimpan')
         }
       })
@@ -905,7 +1099,7 @@ function viewSettings() {
   return h('div', {},
     h('section', { class: 'section' },
       h('h2', {}, 'Anggaran bulanan'),
-      h('p', { class: 'muted' }, 'Isi batas per kategori. Progresnya tampil di halaman Ringkasan.'),
+      h('p', { class: 'muted' }, 'Isi batas per kategori. Progresnya tampil di halaman Home.'),
       h('div', { class: 'card' }, budgetFields)
     ),
     h('section', { class: 'section' },

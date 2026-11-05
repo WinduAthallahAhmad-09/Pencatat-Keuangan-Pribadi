@@ -9,9 +9,11 @@ A lightweight, beautifully designed personal finance web app that works instantl
 ## ✨ Key Features
 
 - **Transaction Logging** — Record income and expenses with categories, dates, and notes
-- **Visual Summary** — Interactive donut chart showing expense distribution by category
+- **Home Dashboard** — Donut chart, dynamic tips, category cards, and monthly statistics
+- **Transaction List** — Filter income and expenses by type and day
+- **Calendar View** — Browse daily transactions and monthly category totals
 - **Monthly Budgets** — Set spending limits per category and track your progress
-- **Gesture Navigation** — Swipe between pages with fluid, native-like animations
+- **Four-Page Navigation** — Swipe between Home, Transactions, Calendar, and Settings, or use the five-item navigation bar with a central **+** action
 - **Dark & Light Mode** — Automatically adapts to system preference (Vanilla & Cosmic themes)
 - **Mobile Responsive** — Optimized for smartphones with a native-like experience
 - **Installable PWA** — Install on your Android home screen and use it like a native app, fully offline
@@ -20,12 +22,12 @@ A lightweight, beautifully designed personal finance web app that works instantl
 
 ## 🎨 Design
 
-The app features a **glassmorphism** design language with blur effects, transparency, and smooth animations:
+The app uses a clean, card-based Spendo-inspired layout with the legacy purple Vanilla and Cosmic color palettes:
 
-- Bottom navigation bar with a moving glass lens effect
+- Five-item bottom navigation with a moving lens and central **+** button
+- Large month header, donut chart, category icons, and a full calendar page
 - Parallax and ripple effects during page transitions
-- Micro-interaction animations on buttons and interactive elements
-- Harmonious color palettes for both light (Vanilla) and dark (Cosmic) themes
+- Solid, high-contrast cards in both light (Vanilla) and dark (Cosmic) themes
 
 ## 📂 Project Structure
 
@@ -62,23 +64,28 @@ The application itself is a **single-file app** — all HTML, CSS, and JavaScrip
 ## 📖 Usage Guide
 
 ### Adding a Transaction
-1. Tap the **+** button (FAB) at the bottom right
+1. Tap the central **+** button in the bottom navigation
 2. Select type: **Expense** or **Income**
 3. Enter the amount, choose a category, date, and optional note
 4. Tap **Save**
 
-### Viewing Summary
-- Swipe to the **Summary** page to see the expense donut chart
+### Viewing the Dashboard
+- Open **Home** to see the expense donut chart, dynamic tips, and category cards
 - View statistics: daily average, largest expense, and savings ratio
+
+### Using the Calendar
+- Open **Calendar** and tap a date to see that day's transactions
+- Expense-category dots appear on dates with spending
+- Monthly expense totals and category breakdowns appear below the daily list
 
 ### Setting Budgets
 1. Swipe to the **Settings** page
 2. Set a budget limit for each expense category
-3. Budget progress will appear on the Summary page
+3. Budget progress and over-budget tips will appear on the Home page
 
 ### Month Navigation
-- Use the **◀ ▶** buttons at the top to switch between months
-- Tap the month name to jump back to the current month
+- Tap the previous or next month name at the top to switch months
+- Tap the current month title to jump back to the current month
 
 ### Export & Import
 - **Export JSON** — Back up all data (can be re-imported)
@@ -115,7 +122,7 @@ Built as a **single-file application** — all markup, styling, and logic are pa
 | Technology | Implementation |
 |---|---|
 | **HTML5** | Semantic structure with ARIA attributes for accessibility |
-| **CSS3** | Inline `<style>` — CSS custom properties, glassmorphism, media queries, and keyframe animations |
+| **CSS3** | Inline `<style>` — CSS custom properties, solid cards, responsive layouts, media queries, and keyframe animations |
 | **Vanilla JavaScript** | Inline `<script>` — DOM manipulation, state management, and gesture handling without any framework |
 | **Web Storage API** | Local data persistence via `localStorage` |
 | **Web Share API** | Native file sharing for data export on supported devices |
