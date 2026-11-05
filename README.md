@@ -371,6 +371,7 @@ No package installation is required.
 |---|---|
 | Live application | [winduathallahahmad-09.github.io/Pencatat-Keuangan-Pribadi](https://winduathallahahmad-09.github.io/Pencatat-Keuangan-Pribadi/) |
 | Android installation guide | [Annotated APK download screenshot](docs/screenshots/apk-download-guide.png) |
+| Release notes | [v1.0.0](docs/release-notes/v1.0.0.md) |
 | GitHub repository | [WinduAthallahAhmad-09/Pencatat-Keuangan-Pribadi](https://github.com/WinduAthallahAhmad-09/Pencatat-Keuangan-Pribadi) |
 | Design specification | [Spendo layout and legacy purple theme](docs/superpowers/specs/2026-11-05-spendo-layout-legacy-theme-design.md) |
 | Implementation plan | [Spendo layout implementation](docs/superpowers/plans/2026-11-05-spendo-layout-legacy-theme.md) |
