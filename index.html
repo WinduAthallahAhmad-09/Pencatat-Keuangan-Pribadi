@@ -10,6 +10,9 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Keuangan">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
 <title>Catatan Keuangan</title>
 <style>
 /* Vanilla (terang) dan Cosmic (gelap) */
@@ -1107,31 +1110,17 @@ function toast(msg) {
   toastTimer = setTimeout(() => el.remove(), 2200)
 }
 
-/* ---------- Ikon layar utama iPhone (dibuat otomatis) ---------- */
-function setHomeIcon() {
-  try {
-    const c = document.createElement('canvas')
-    c.width = c.height = 180
-    const x = c.getContext('2d')
-    const g = x.createLinearGradient(0, 0, 180, 180)
-    g.addColorStop(0, '#1B1247')
-    g.addColorStop(1, '#5B3FD1')
-    x.fillStyle = g
-    x.fillRect(0, 0, 180, 180)
-    x.fillStyle = '#FBF4E4'
-    x.font = '700 76px -apple-system, Helvetica, Arial, sans-serif'
-    x.textAlign = 'center'
-    x.textBaseline = 'middle'
-    x.fillText('Rp', 90, 94)
-    document.head.append(h('link', { rel: 'apple-touch-icon', href: c.toDataURL('image/png') }))
-  } catch (e) { /* abaikan jika canvas tidak tersedia */ }
-}
-
 /* ---------- Mulai ---------- */
-setHomeIcon()
 renderAll()
 setProgress(0)
 syncInert()
+
+/* ---------- PWA: daftarkan service worker (hanya via http/https) ---------- */
+if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => { /* offline tetap berjalan tanpa SW */ })
+  })
+}
 </script>
 </body>
 </html>

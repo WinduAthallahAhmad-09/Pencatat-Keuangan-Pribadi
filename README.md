@@ -13,7 +13,8 @@ A lightweight, beautifully designed personal finance web app that works instantl
 - **Monthly Budgets** — Set spending limits per category and track your progress
 - **Gesture Navigation** — Swipe between pages with fluid, native-like animations
 - **Dark & Light Mode** — Automatically adapts to system preference (Vanilla & Cosmic themes)
-- **Mobile Responsive** — Optimized for smartphones with PWA-style experience
+- **Mobile Responsive** — Optimized for smartphones with a native-like experience
+- **Installable PWA** — Install on your Android home screen and use it like a native app, fully offline
 - **Export & Import** — Back up your data as JSON or CSV, and restore anytime
 - **Serverless** — All data is stored in the browser's `localStorage`, 100% offline
 
@@ -30,22 +31,33 @@ The app features a **glassmorphism** design language with blur effects, transpar
 
 ```
 Pencatat Keuangan/
-├── Pencatat keuangan.html   # Entire application (HTML + CSS + JS)
+├── index.html               # Entire application (HTML + CSS + JS)
+├── manifest.webmanifest     # PWA manifest (name, icons, standalone display)
+├── sw.js                    # Service worker (offline app-shell cache)
+├── icons/                   # App icons (180, 192, 512, maskable)
 └── README.md                # Documentation
 ```
 
-This is a **single-file application** — all HTML, CSS, and JavaScript are bundled into one file with zero external dependencies.
+The application itself is a **single-file app** — all HTML, CSS, and JavaScript are bundled into one file with zero external dependencies. The manifest and service worker only add installability and offline caching.
 
 ## 🚀 Getting Started
 
 1. **Open directly in your browser**
    ```
-   Double-click "Pencatat keuangan.html"
+   Double-click "index.html"
    ```
    Or open it in your preferred browser (Chrome, Firefox, Safari, Edge).
 
 2. **Or deploy to static hosting**
-   Upload the HTML file to GitHub Pages, Netlify, Vercel, or any static hosting provider.
+   Upload the folder to GitHub Pages, Netlify, Vercel, or any HTTPS static hosting provider. Service workers (offline mode) only work over HTTPS or on `localhost`.
+
+### 📲 Install on Android (PWA)
+
+1. Open the hosted app URL in Chrome on your Android phone.
+2. Tap the **⋮** menu → **Install app** (or **Add to Home screen**).
+3. The app now opens full-screen from your home screen and works fully offline.
+
+> Data from the old `file://` version is not shared with the installed app. Open the old file → **Ekspor JSON**, then in the installed app → **Impor JSON**.
 
 ## 📖 Usage Guide
 
