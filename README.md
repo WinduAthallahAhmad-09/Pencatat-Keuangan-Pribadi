@@ -101,6 +101,21 @@ The live app is available at:
 - An internet connection for the first load and installation.
 - Enough local browser storage for app data and cached assets.
 
+### Visual installation guide
+
+The screenshot below marks the Chrome menu that contains the Android installation option. On Android, the same three-dot menu is located in the top-right corner of the browser.
+
+<p align="center">
+  <a href="docs/screenshots/android-install-guide.png">
+    <img src="docs/screenshots/android-install-guide.png" alt="Annotated Chrome screenshot showing the three-dot menu used to install the PWA on Android" width="380">
+  </a>
+</p>
+
+1. Open the application in Chrome.
+2. Tap the highlighted **three-dot menu**.
+3. Choose **Install app** or **Add to Home screen**.
+4. Confirm the installation. The app icon then appears on the Android home screen.
+
 ### Installation steps
 
 1. Open the [live application](https://winduathallahahmad-09.github.io/Pencatat-Keuangan-Pribadi/) in **Chrome** on your Android phone.
@@ -363,6 +378,7 @@ No package installation is required.
 | Resource | Link |
 |---|---|
 | Live application | [winduathallahahmad-09.github.io/Pencatat-Keuangan-Pribadi](https://winduathallahahmad-09.github.io/Pencatat-Keuangan-Pribadi/) |
+| Android installation guide | [Annotated Chrome menu screenshot](docs/screenshots/android-install-guide.png) |
 | GitHub repository | [WinduAthallahAhmad-09/Pencatat-Keuangan-Pribadi](https://github.com/WinduAthallahAhmad-09/Pencatat-Keuangan-Pribadi) |
 | Design specification | [Spendo layout and legacy purple theme](docs/superpowers/specs/2026-11-05-spendo-layout-legacy-theme-design.md) |
 | Implementation plan | [Spendo layout implementation](docs/superpowers/plans/2026-11-05-spendo-layout-legacy-theme.md) |
