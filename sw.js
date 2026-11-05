@@ -1,4 +1,4 @@
-const CACHE_NAME = 'catatan-keuangan-v3'
+const CACHE_NAME = 'catatan-keuangan-v4'
 const APP_SHELL = [
   './',
   './index.html',
@@ -27,7 +27,9 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const req = event.request
   if (req.method !== 'GET') return
-  if (new URL(req.url).origin !== location.origin) return
+  const url = new URL(req.url)
+  if (url.origin !== location.origin) return
+  if (url.pathname.endsWith('.apk')) return
 
   if (req.mode === 'navigate') {
     event.respondWith(

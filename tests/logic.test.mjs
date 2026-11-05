@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 
@@ -121,7 +121,17 @@ test('donutLabels: persen dibulatkan, segmen kecil disembunyikan', () => {
   })
 })
 
-test('service worker memakai cache v3', () => {
+test('service worker memakai cache v4', () => {
   const sw = readFileSync(new URL('../sw.js', import.meta.url), 'utf8')
-  assert.match(sw, /const CACHE_NAME = 'catatan-keuangan-v3'/)
+  assert.match(sw, /const CACHE_NAME = 'catatan-keuangan-v4'/)
+})
+
+test('service worker melewati unduhan APK', () => {
+  const sw = readFileSync(new URL('../sw.js', import.meta.url), 'utf8')
+  assert.match(sw, /url\.pathname\.endsWith\('\.apk'\)/)
+})
+
+test('halaman pengaturan menyediakan unduhan APK yang ada', () => {
+  assert.match(html, /downloads\/Catatan-Keuangan-debug-1\.0\.0\.apk/)
+  assert.ok(existsSync(new URL('../downloads/Catatan-Keuangan-debug-1.0.0.apk', import.meta.url)))
 })

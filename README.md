@@ -135,15 +135,11 @@ Open the installed app while connected to the internet. The service worker fetch
 
 Long-press the app icon and choose **Uninstall** or open **App info** and select **Uninstall**. Export a JSON backup before uninstalling or clearing browser data if you want to keep your records.
 
-### Why there is no APK
+### Optional debug APK
 
-This project intentionally uses the PWA approach:
+A debug-signed APK is available for Android testing. Open **Pengaturan → Aplikasi Android** in the app and tap **Unduh APK Android**, or download [`downloads/Catatan-Keuangan-debug-1.0.0.apk`](downloads/Catatan-Keuangan-debug-1.0.0.apk) directly.
 
-- No APK signing or manual sideloading.
-- One codebase for desktop and Android.
-- Automatic updates through the web.
-- Installable from the browser.
-- Works offline after the first load.
+The APK is a Trusted Web Activity wrapper around the live application. It requires Chrome and an internet connection on the first launch. Because it is a debug build, use it for testing only; installing a future release build will require uninstalling it first. The PWA installation above remains the recommended option for everyday use.
 
 ## Usage Guide
 
